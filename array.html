@@ -1,0 +1,1228 @@
+<script>
+  // =========================================|| THEORY ||=============================================
+
+  // TOPIC- DYNAMIC ARRAY & STATIC ARRAY
+
+  // Dynamic Arrays in JavaScript
+  // Characteristics:
+
+  // Resizable: Dynamic arrays can grow or shrink as needed. You don't have to define the size when you create the array.
+  // Flexible Memory Allocation: Memory is allocated as needed when elements are added or removed.
+  // Convenience: Many built-in methods are available to manipulate arrays, such as push, pop, shift, unshift, and splice.
+
+  // EXAMPLE-
+
+  // let dynamicArray = [];    // Create a dynamic array
+
+  // dynamicArray.push(1);     // Add elements
+  // dynamicArray.push(2);
+  // dynamicArray.push(3);
+
+  // console.log(dynamicArray); // [1, 2, 3]
+
+  // dynamicArray.pop();       // Remove the last element
+  // console.log(dynamicArray); // [1, 2]
+
+  // Advantages:
+
+  // Flexibility: You can easily adjust the array size at runtime.
+  // Ease of Use: JavaScript provides many methods to manipulate dynamic arrays.
+  // No Size Declaration: There's no need to specify the size upfront.
+
+  // STATIC ARRAY (Conceptual in JavaScript)-
+
+  // JavaScript does not have true static arrays where the size is fixed at compile-time. However, we can
+  // simulate static arrays by fixing the size and avoiding resizing.
+
+  // Characteristics:
+
+  // Fixed Size: Once created, the size cannot be changed.
+  // Pre-allocated Memory: Memory is allocated based on the fixed size at the time of creation.
+
+  // EXAMPLE-
+
+  // let staticArray = new Array(3);  // Create an array with a fixed size
+
+  // staticArray[0] = 1;  // Assign values
+  // staticArray[1] = 2;
+  // staticArray[2] = 3;
+
+  // console.log(staticArray); // [1, 2, 3]
+
+  // // Attempting to resize (conceptually static, should avoid this)
+  // staticArray.push(4); // This is possible in JavaScript but would be avoided for static array simulation
+  // console.log(staticArray); // [1, 2, 3, 4] - Shows the array can still be resized in JavaScript
+
+  // Advantages:
+
+  // Predictable Memory Usage: Memory allocation is known upfront, which can lead to predictable performance.
+  // Performance: Fixed size arrays can be more performant in scenarios where the size does not change.
+  // Disadvantages:
+
+  // Inflexibility: Cannot change size once set; not suitable for scenarios where the data size is variable.
+  // Not Natively Supported: JavaScript does not enforce static array size, so the concept must be self-imposed.
+
+  // COMPARASION-
+  // Feature		Dynamic Arrays				Static Arrays
+  // Size		Flexible, resizable			Fixed at creation, not resizable
+  // Memory Allo.	Dynamic, as needed			Fixed, pre-allocated
+  // Ease of Use	High, many built-in methods available	Lower, requires careful management
+  // Performance	Potential overhead from resizing	More predictable, but limited use cases
+  // Flexibility	Very flexible				Rigid, not suitable for variable data
+
+  // Summary-
+  // In JavaScript, arrays are inherently dynamic, offering great flexibility and ease of use for most
+  // applications. The concept of static arrays, while not natively supported, can be simulated by fixing
+  // the array size and avoiding operations that change its size. This conceptual understanding can help
+  // in scenarios where predictable performance and memory usage are critical.
+
+  // ==============================================================================================
+
+  // TOPIC- METRICS-
+
+  // "Metrics" often refers to various measurements or calculations performed on the array to derive meaningful insights or to facilitate certain operations.
+
+  // 1. Length
+  // The most basic metric, the length of an array, tells you how many elements are in the array.
+
+  // let array = [1, 2, 3, 4, 5];
+  // console.log(array.length); // Output: 5
+
+  // 2. Sum
+
+  // 3. Average
+
+  // 4. Maximum and Minimum Values
+  // Finding the maximum and minimum values in an array.
+
+  // let array = [1, 2, 3, 4, 5];
+  // let max = Math.max(...array);
+  // let min = Math.min(...array);
+  // console.log(max); // Output: 5
+  // console.log(min); // Output: 1
+
+  // 5. Range
+  // The range of an array, defined as the difference between the maximum and minimum values.
+
+  // let array = [1, 2, 3, 4, 5];
+  // let range = Math.max(...array) - Math.min(...array);
+  // console.log(range); // Output: 4
+
+  // 6. Median
+
+  // 7. Mode
+
+  // 8. Remove Unique Elements
+
+  // let array = [1, 2, 2, 3, 4, 4, 5];
+  // let uniqueArray = [...new Set(array)];
+  // console.log(uniqueArray); // Output: [1, 2, 3, 4, 5]
+
+  // ==============================================================================================
+
+  // TOPIC- ACCESSING OF ARRAY
+
+  // Accessing arrays in JavaScript involves various methods to retrieve, modify, or interact with elements in an array.
+
+  // 1. Accessing Elements by Index
+  // You can access elements in an array using their index, starting from 0.
+
+  // let array = [10, 20, 30, 40, 50];
+
+  // console.log(array[0]); // Output: 10
+  // console.log(array[2]); // Output: 30
+  // console.log(array[array.length - 1]); // Output: 50 (last element)
+
+  // 2. Modifying Elements by Index
+  // You can modify elements in an array by assigning new values to specific indices.
+
+  // let array = [10, 20, 30, 40, 50];
+
+  // array[1] = 25; // Modify the second element
+  // console.log(array); // Output: [10, 25, 30, 40, 50]
+
+  // 3. Adding Elements
+  // Using push Method
+  // The push method adds one or more elements to the end of an array.
+
+  // let array = [10, 20, 30];
+  // array.push(40, 50);
+  // console.log(array); // Output: [10, 20, 30, 40, 50]
+  // Using unshift Method
+  // The unshift method adds one or more elements to the beginning of an array.
+
+  // let array = [10, 20, 30];
+  // array.unshift(0, 5);
+  // console.log(array); // Output: [0, 5, 10, 20, 30]
+
+  // 4. Removing Elements
+  // Using pop Method
+  // The pop method removes the last element from an array.
+
+  // let array = [10, 20, 30];
+  // array.pop();
+  // console.log(array); // Output: [10, 20]
+  // Using shift Method
+  // The shift method removes the first element from an array.
+
+  // let array = [10, 20, 30];
+  // array.shift();
+  // console.log(array); // Output: [20, 30]
+
+  // 5. Iterating Over Arrays
+  // Using for Loop
+
+  // let array = [10, 20, 30];
+  // for (let i = 0; i < array.length; i++) {
+  //   console.log(array[i]);
+  // }
+
+  // 6. Finding Elements
+  // Using indexOf Method
+  // The indexOf method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+
+  // let array = [10, 20, 30, 40, 50];
+  // let index = array.indexOf(30);
+  // console.log(index); // Output: 2
+
+  // ==============================================================================================
+
+  // TOPIC- TRAVERSING FORWARD AND BACKWARD
+
+  // FORWARD Traversal- (Using a for Loop)
+
+  // let array = [10, 20, 30, 40, 50];
+
+  // // Forward traversal using a for loop
+  // for (let i = 0; i < array.length; i++) {
+  //   console.log(array[i]);
+  // }
+
+  // BACKWARD Traversal-
+
+  // let array = [10, 20, 30, 40, 50];
+
+  // // Backward traversal using a for loop
+  // for (let i = array.length - 1; i >= 0; i--) {
+  //   console.log(array[i]);
+  // }
+
+  // ==============================================================================================
+
+  // TOPIC- ARRAY OPERATIONS-  INSERTATION, DELETION AND MERGING IN ARRAY
+
+  // TOPIC- INSERTATION
+
+  // EXAMPLE- 1
+  //   let array =[11,22,33,44,55,66];
+  //   let index= 3;
+  //   let data= "Ronak";
+
+  //   function insertElm() {
+
+  //   // Increase the size an array to accommodate the new element
+  //   array.length = array.length + 1;
+
+  //   // Shift elements to the right
+  //   for (let i = array.length - 2; i >= index; i--) {
+  //     array[i + 1] = array[i];
+  //   }
+
+  //   // Insert the new element at the specified index
+  //   array[index] = data;
+
+  //   // Return the updated array
+  //   return array;
+  // }
+
+  // // Print the updated array
+  // console.log(insertElm());           // [11, 22, 33, "Ronak", 44, 55, 66]
+
+  // APPROACH-
+  // Increase the size of the original array
+  // Then from right side last index shift one by one upto given index reached.
+  // Then insert the new element inside that given index
+
+  // EXAMPLE- 2
+  // // 1. Insert Element in Array
+  // let a =[11,22,33,44,55,66];
+  // let el= 70;
+  // let pos=2;
+
+  // for(let i=a.length-1; i>=0; i--){      // a.length= it starts from 5 ( reverse ) | i>=0 => i will run 5 to 0 index.
+  // 	// document.write(i)
+  //  if(i>=pos){                          // i>=pos => i should be greater than pos which is 2 index.
+  // 	a[i+1]= a[i];				        // a[i+1] => a will create a extra space at index 2. | a[i] => after creating a space numbers will move forward.
+  // 	 if(i==pos){		                // once the i is equal to pos then at that empty space el =70 will be placed.
+  // 	  	 a[i]=el;
+  // 	 }
+  //  }
+  //  }
+  // document.write(a)
+
+  // <!-- <h2>1. Insert Element in Array </h2>
+  // <input type="number" id="pos" placeholder="Enter Position" />
+  // <input type="number" id="el" placeholder="Enter Element" />
+  // <button onclick="insert()">Insert</button> -->
+
+  // function insert(){
+  // let a =[11,22,33,44,55,66];
+  // let el= document.getElementById('el').value;
+  // let pos= document.getElementById('pos').value;
+
+  // for(let i=a.length-1; i>=0; i--){
+  //  if(i>=pos){
+  // 	a[i+1]= a[i];
+  // 	 if(i==pos){
+  // 		 a[i]=el;
+  // 	 }
+  // }
+  // }
+  // document.write(a)
+
+  // }
+
+  // 2. Delete Element in Array
+
+  // EXAMPLE - 1
+  //   let array = [11, 22, 33, 44, 55, 66, 77];
+  //   let pos = 3;
+
+  //   function deleteElm(arr, pos) {
+  //     debugger
+  //   if (pos < 0 || pos >= arr.length) {
+  //     console.log("Index out of bounds");
+  //     return arr; // Return the original array if the position is out of bounds
+  //   }
+
+  //   // Shift elements to the left starting from the position to delete
+  //   for (let i = pos; i < arr.length - 1; i++) {
+  //     arr[i] = arr[i + 1];
+  //   }
+
+  //   // Decrease the array length by 1 to remove the last duplicate element
+  //   arr.length = arr.length - 1;
+
+  //   return arr;         // [11, 22, 33, 55, 66, 77]
+  // }
+
+  // // Print the updated array after deletion
+  // console.log(deleteElm(array, pos));
+
+  // APPROACH-
+  // Except- Check given index should should not be less than 0 || greater that array.length
+  // start i from given index and then place array + 1 value at given index
+  // then decrease the length of the array.
+
+  // EXAMPLE - 2
+  // let a= [11,22,33,44,55,66,77];
+  // let pos= 3;
+  // for(let i=pos; i<a.length; i++){
+  // 	a[i]=a[i+1];           // [ 11, 22, 33, 55, 66, 77, undefined ]
+  // }
+  // a.length= a.length-1;   // now fixing the length of the length 7 to 6 | a.length= 7  a.length-1 = 6.
+  // console.log(a);
+
+  // 3. Merge 2 Arrays
+
+// EXAMPLE - 0
+
+//   let arr1 = [11, 22, 33, 44, 55, 66];
+//   let arr2 = [77, 88, 99, 100];
+
+//   function test() {
+//     // Append each element of arr2 to arr1
+//     for (let i = 0; i < arr2.length; i++) {
+//       arr1[arr1.length] = arr2[i];
+//     }
+//     return arr1;
+//   }
+
+//   console.log(test());
+  // Output: [11, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+
+  // EXAMPLE - 1
+  //     let arr1 = [11, 22, 33, 44, 55, 66];
+  //     let arr2 = [77, 88, 99, 100];
+
+  //     function mergeArrays(arr1, arr2) {
+  //       //  let mergedArray = [...arr1]; // Copy elements of arr1 into mergedArray using spread operator
+  //       //  or below
+
+  //       let mergedArray = [];
+
+  //       // Copy elements from array arr1 to mergedArray
+  //       for (let i = 0; i < arr1.length; i++) {
+  //         mergedArray[i] = arr1[i];
+  //       }
+
+  //       debugger
+  //       // Append elements from array arr2 to mergedArray
+  //       for (let i = 0; i < arr2.length; i++) {
+  //         mergedArray[arr1.length + i] = arr2[i];
+  //       }
+
+  //       return mergedArray;
+  //     }
+
+  //     // Test the function
+  //     let c = mergeArrays(arr1, arr2);
+  //     console.log(c); // [ 11, 22, 33, 44, 55, 66, 77, 88, 99, 100 ]
+
+  // Approach-
+  // Create 3rd array to merge 1st and 2nd array in it.
+  // then copy 1st array in 3rd array
+  // the add 2nd array at above the length of 1st array.
+  // then print or return the 3rd array.
+
+  // EXAMPLE - 2
+  // let a =[11,22,33,44,55,66];
+  // let b= [77,88,99,100];
+  // let c=[];
+
+  // for(let i=0; i<a.length; i++){
+  // 	c[i]= a[i];      // Pushing the value of a value in c
+  // }
+  // // console.log(c);  [ 11, 22, 33, 44, 55, 66 ]
+
+  // for (let i=0; i<b.length; i++){
+  // 	c[a.length+i]=b[i]      // a.length+i gives index number of b => 6 7 8 9  | so it means we have to put our b index value in a.length+1
+  // }
+  // console.log(c)
+
+  //Result- [ 11, 22, 33, 44, 55, 66, 77, 88, 99, 100 ]
+
+  // =========================================|| THEORY ||=============================================
+
+  // =========================================|| BASIC ||=============================================
+
+  // @. Reverse an array                                         -(EASY)
+
+  // let str= "hindustan humara";
+  //                                 // split() - It splits on the bases of space or something else and always returns an array.
+  // // console.log(str.split(" "));   // ['hindustan', 'humara']
+
+  // function print(){
+  //     let splitReverse= str.split(" ").reverse();
+
+  // }
+
+  // print();
+
+  // @. Check if an array is array or not
+
+  // console.log(typeOf[])   // object     typeOf method always shows it's an object.
+
+  // let arr=[1,2,3,4,5,6,7]
+  // let arr2={
+  //     name:"Ronak",
+  //     age: 23
+  // }
+
+  // function print(arr){
+  //     return Array.isArray(arr);          // This method is used to check the type of or array or not and the it return true or false
+  // }
+
+  // console.log(print(arr))    // true
+  // console.log(print(arr2))    // false
+
+  // @. Empty an array without reseting and pop method
+  // let arr=  [1,2,3,4,5,6];
+  // // arr= []                  // This is reset.
+  // arr.length= 0;
+  // console.log(arr);           // []   Array is empty now
+
+  // @ Check given number is an integer or not?
+  // Number.isInteger()     is a method for checking
+
+  // @. check in object is there any a name of property is present or not.
+  // let obj= {
+  //     bb:"rr",
+  //     a:"ff"
+  // }
+
+  // console.log(obj.hasOwnProperty('a'));      // true       hasOwnProperty is a method to check is for property is present or not and return true or false.
+
+  // =========================================|| BASIC ||=============================================
+
+  // =========================================|| LEETCODE ||=============================================
+
+  //   @2. Find the maximum and minimum element in an array                     -(EASY)
+
+  // function findMaxMin(array) {
+  //   if (array.length === 0) {
+  //     return { max: undefined, min: undefined };
+  //   }
+  //   let min = array[0];
+  //   let max = array[0];
+
+  //   for (let i = 1; i < array.length; i++) {
+  //     if (array[i] < min) {
+  //       min = array[i];
+  //     }
+  //     if (array[i] > max) {
+  //       max = array[i];
+  //     }
+  //   }
+  //   return { max, min };
+  // }
+
+  // let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  // let result = findMaxMin(array);
+  // console.log('Maximum:', result.max);
+  // console.log('Minimum:', result.min);
+  // console.log('Minimum:', result);
+
+  // APPROACH-
+  // Except- if array length is less than 0 or === to 0 then return max and min undefined.
+  // create 2 variables min and max and assign array 0 position index both of them.
+  // then run loop upto array length and check if i is smaller than min then put i to min and vice versa for max.
+
+  // ==========================================================================================
+
+  // @7. REVERSE Interger                                   - (MEDIUM)
+  // Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value
+  // to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+  // Explation-
+  // let x= 123;
+  // OUTPUT- 321
+
+  // // Explatation- 1
+
+  // NOTE- Reverse function is only used on array and not on number
+  // function print(){
+  //         let ans= 0;
+  //         let digit = x%10;           // 3        2         1
+  //         ans= (ans*10) + digit       // 3        32        321   ans
+  //         x= x/10;                    // 12.3     1.2
+  //         x= parseInt(x)              // 12       1         0 here we have to stop otherwise loop runs infinit.
+  // }
+
+  // print();
+
+  //=========== SOLUTION 1 ==============//
+
+  // let d = 123;
+
+  // // Convert the number to a string, then split, reverse, and join the string
+  // let reversedString = d.toString().split('').reverse().join('');
+
+  // // Convert the reversed string back to a number
+  // let reversedNumber = parseInt(reversedString, 10);
+
+  // console.log(reversedNumber);  // Output: 321
+
+  //=========== SOLUTION 1 ==============//
+
+  //=========== SOLUTION 2 ==============//
+  // let x= 123;
+
+  // function reverseInteger(x){
+  //     const INT_MIN = -2147483648; // -2^31
+  //     const INT_MAX = 2147483647;  // 2^31 - 1
+
+  //     let originalX = x; // Preserve the original x value
+
+  //     let ans= 0;
+  //     while(x!==0){
+  //         let digit= x%10;
+  //         ans = (ans*10)+ digit
+  //         x=x/10
+  //         x=parseInt(x);
+  //     }
+  //         // console.log(ans);
+
+  //         // Check if the reversed number is within the 32-bit signed integer range
+  //     if (ans < INT_MIN || ans > INT_MAX) {
+  //         return 0;
+  //     }
+  //     console.log(ans)
+  //     return ans;
+  // }
+
+  // let result = reverseInteger(x);
+  // console.log(result); // Output: 321
+
+  // APPROACH-
+  // create a variable to store reverse integer.
+  // Then run a while loop should be less than 0.
+  // Then get mode of give value and store in a variable and then run a formula ans*10 and add mode value
+  // then divide your x value with 10 and store its ans in x use parseInt also.
+
+  //=========== SOLUTION 2 ==============//
+
+  // ==========================================================================================
+
+  // @1009. Complement of Base 10 Integer                       -(EASY)
+  // The complement of an integer is the integer you get when you flip all the 0's to 1's and
+  // all the 1's to 0's in its binary representation.
+
+  // For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
+  // Given an integer n, return its complement.
+
+  // Example 1:
+
+  // Input: n = 5
+  // Output: 2
+  // Explanation: 5 is "101" in binary, with complement "010" in binary, which is 2 in base-10.
+
+  // // EXPLATATION-
+
+  // CONVERTING NUMBER TO BINARY DIGIT.
+  // let number= 5
+  // let get = number.toString(2);
+  // console.log(get);                   // 101
+
+  // CONVERTING NUMBER TO BINARY DIGIT.
+  // let binaryString = "101";
+  // let decimalNumber = parseInt(binaryString, 2);
+  // console.log(decimalNumber); // Output: 5
+
+  //=========== SOLUTION 1 ==============//
+
+  // let n= 5;
+
+  // function print(n){
+
+  //     if(n===0) return 1      // Handling edge case
+
+  //         let binary = n.toString(2);     // coverting 5 to binary digit
+  //         console.log(binary);        // 101
+  //         console.log(binary.length);     // 3
+
+  //         let stringBinary= '';
+
+  //         for(let i=0; i<binary.length; i++){
+  //             stringBinary = stringBinary + (binary[i] == "0" ? "1": "0");          // Checking if 101    1 ===0 => 0  , 0===0 =>1  ,  1 ===0 => 0
+  //         }
+
+  //         let convertToNumber= parseInt(stringBinary, 2);             // again converting stringBinary to number
+
+  //         return convertToNumber;
+  //     }
+
+  // console.log(print(5));
+  // console.log(print(10));
+  // console.log(print(15));
+
+  // APPROACH-
+  // Edge case- value should not be equal to 0
+  // first convert integer value to binary through toString method 
+  // then run a loop over that converted string value and create a variable to store value and use ternary operator to check if 0 then add 1 and vice versa.
+  // after that convert it again to integer through parseInt
+
+  //=========== SOLUTION 1 ==============//
+
+  // ==========================================================================================
+
+  // @. 231. - POWER OF TWO-                            -(EASY)
+
+  // function isPowerOfTwo(n) {
+  //     if (n <= 0) {
+  //         return false;
+  //     }
+  //     return (n & (n - 1)) === 0;
+  // }
+
+  // // Example usage:
+  // console.log(isPowerOfTwo(1)); // Output: true (2^0 = 1)
+  // console.log(isPowerOfTwo(2)); // Output: true (2^1 = 2)
+  // console.log(isPowerOfTwo(3)); // Output: false (not a power of two)
+  // console.log(isPowerOfTwo(4)); // Output: true (2^2 = 4)
+  // console.log(isPowerOfTwo(16)); // Output: true (2^4 = 16)
+  // console.log(isPowerOfTwo(18)); // Output: false (not a power of two)
+
+  // Explaintion-
+  // 1 - 1 is 0000
+  // 2 - 1 is 0001
+  // 4 - 1 is 0011
+  // 8 - 1 is 0111
+
+  // ==========================================================================================
+
+  // @.Swap alternate -                       - IMP     -(EASY)  (ATLASIAN, QUALCOLUM)
+  // let arr= [11,22,33,44,55,66];
+  // // Output - [22,11,44,33,66,55];
+
+  // function swapAlternate(arr) {
+  //     // Iterate through the array with a step of 2
+  //     for (let i = 0; i < arr.length - 1; i += 2) {
+  //         let temp = arr[i];
+  //         arr[i] = arr[i + 1];
+  //         arr[i + 1] = temp;
+  //     }
+  // }
+
+  // swapAlternate(arr);
+  // console.log(arr); // Output: [22, 11, 44, 33, 66, 55]
+
+  // APPROACH
+  // Run loop upto arr length and increase i by 2
+  // then store index first value in temp and at previous index put +1 index value
+
+  // ==========================================================================================
+
+  // @. Find Unique and print-                                  -(EASY)  -(HASH TABLE)
+  // let arr= [11,33,77,11,44,44,66,77]
+  // // Output- 77
+
+  // function findUnique(arr) {
+  //     let countMap = {};
+
+  //     // Count occurrences of each element
+  //     for (let i = 0; i < arr.length; i++) {
+  //         let num = arr[i];
+  //         debugger
+  //         if (countMap[num]) {           // It says if in countMap object the value is already present then push and if not then don't push the value and increase the count.
+  //             console.log(countMap);
+  //             countMap[num]++;
+  //         } else {                       // If value is not present then add that value in object
+  //             countMap[num] = 1;
+  //         }
+  //     }
+
+  // Above loop goes through each element in the array and counts the occurrences of each number.
+  // If the number already exists in the count object, its value is incremented. Otherwise, the number
+  // is added to the count object with a value of 1.
+
+  //     // Find and print elements that appear exactly once
+  //     for (let i = 0; i < arr.length; i++) {
+  //         let num = arr[i];
+  //         if (countMap[num] === 1) {
+  //             console.log(num);
+  //         }
+  //     }
+  // }
+
+  // findUnique(arr); // Output: 33 66
+
+  // ==========================================================================================
+
+  // @.1207 Unique number of occerence-                           (EASY)  -(HASH TABLE)
+  // Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+  // Example 1:
+  // Input: arr = [1,2,2,1,1,3]
+  // Output: true
+  // Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+
+  //       function uniqueOccurrences(arr) {
+  //         let count = {};
+  //
+  //         // Count the occurrences of each value
+  //         for (let i = 0; i < arr.length; i++) {
+  //           let num = arr[i];
+  //           count[num] = (count[num] || 0) + 1;
+  //           console.log(count)
+  //         }
+
+  //         // Extract values from the count object
+  //         let countValues = [];
+  //         for (let i = 0; i < arr.length; i++) {
+  //           if (count[arr[i]] !== undefined) {
+  //             countValues.push(count[arr[i]]);
+  //             console.log(countValues)
+  //             delete count[arr[i]]; // Ensure we only push unique keys
+  //             console.log(countValues)
+  //           }
+  //         }
+
+  //         // Store the occurrences in a set
+  //         let occurrences = new Set(countValues);
+
+  //         // If the size of the set is equal to the number of unique count values, they are all unique
+  //         return occurrences.size === countValues.length;
+  //       }
+
+  //       // Example usage
+  //       let arr = [1, 2, 2, 1, 1, 3];
+  //       console.log(uniqueOccurrences(arr)); // Output: true
+
+  // APPROACH-
+  // create 1 object variable then run a loop on given array.
+  // then push array elements in object with condition if that element is already present then only increase its count otherwise push element with 1 value.
+  // then run a loop on object and check if the count is 1 then print that element.
+
+  // ==========================================================================================
+
+  // @. 442 Find duplicate in an array-                           -  (MEDIUM)
+  // https://www.youtube.com/watch?v=ACYunkWQnSI&t=21s
+  // Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears once or twice, return an array of all the integers that appears twice.
+  // You must write an algorithm that runs in O(n) time and uses only constant extra space.
+
+  // Example 1:
+  // Input: nums = [4,3,2,7,8,2,3,1]
+  // Output: [2,3]
+
+  // function findDuplicates(nums) {
+  //   const result = [];
+  //   debugger;
+  //   for (let i = 0; i < nums.length; i++) {
+  //     const index = Math.abs(nums[i]) - 1; // -7 will be negative
+  //     console.log(index);
+
+  //     if (nums[index] < 0) {
+  //       // it means -2 or already negative
+  //       // If the value at nums[index] is negative, it means the number has been encountered before
+  //       result.push(index + 1);
+  //     } else {
+  //       // Mark the number as visited by making the value at nums[index] negative
+  //       nums[index] = -nums[index];
+  //     }
+  //   }
+
+  //   return result;
+  // }
+
+  // // Example usage
+  // let nums = [4, 3, 2, 7, 8, 2, 3, 1];
+  // console.log(findDuplicates(nums)); // Output: [2, 3]
+
+  // APPROACH-
+  // Create an empty array to store duplicate data
+  // Then change for loop, change interger to positive value if any integer is negative and -1 from that
+  // then check if any element is less than zero then push in result array and if not then mark that element negative .
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  //@. 283. Move Zeros.                                 -(EASY)
+  // move all zero's to the right
+
+  // let arr= [0, 1, 0, 3, 12];
+  // // Output- [1, 3, 12, 0, 0];
+
+  // function moveZero(){
+  //   let nonZero=0;
+
+  //   for(let j = 0; j<=arr.length-1; j++){
+  //     if(arr[j]!==0){
+  //       let temp= arr[j];
+  //       arr[j]=arr[nonZero];
+  //       arr[nonZero]= temp;
+
+  //       nonZero++;
+  //     }
+  //   }
+  //   return arr;  // Return the modified array
+  // }
+
+  // console.log(moveZero());
+
+  // APPROACH-
+  // Create variable of 0 integer. then run a loop upto length of array.
+  // check condition if array element is not equal to 0 then store that elm into temp
+  // and then at nonzero index assign nonzero varible then assign at arr[nonzero] temp value which is nonzero value.
+  // and increase nonzero variable by one
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // @. 1752. Check if Array Is Sorted and Rotated       (IT IS NOT ROTATED)             -(EASY)
+
+  //   let arr = [11, 22, 33, 44, 55, 66];
+
+  //   function check() {
+  //     let count = 0;
+  //     debugger;
+  //     for (let i = 0; i < arr.length; i++) {
+  //       if (arr[i] > arr[i - 1]) {
+  //         count++;
+  //       }
+  //     }
+
+  //     // Check the edge case where the last element is greater than the first
+  //     let n = arr.length;
+  //     if (arr[n - 1] > arr[0]) {
+  //       count++;
+  //     }
+  //     return count <= 1;
+  //   }
+
+  //   console.log(check());
+
+  // APPROACH-
+  // Create one count variable to increase it if condition matches.
+  // run a loop on array and just check if arr[i] should be greater than arr[i-1] which is previous elem
+  // at last check array last elm and 1st elm if 1st elm is smaller than last then increse count.
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // @. 989. Add to Array-Form of Integer                       -(EASY)
+
+  // PATTERN- 1
+
+  // function addToArrayForm(num, k) {
+  //   let carry = 0;
+  //   let result = [];
+  //   let i = num.length - 1;
+
+  //   debugger;
+  //   // Add k to the number represented by the array
+  //   while (i >= 0 || k > 0) {
+  //     let digit = i >= 0 ? num[i] : 0;
+  //     let sum = digit + (k % 10) + carry;
+  //     carry = Math.floor(sum / 10);
+  //     result.push(sum % 10);
+  //     k = Math.floor(k / 10);
+  //     i--;
+  //   }
+
+  //   // If there's any remaining carry
+  //   if (carry > 0) {
+  //     result.push(carry);
+  //   }
+
+  //   // The result array will be in reverse order, so reverse it
+  //   result.reverse();
+
+  //   return result;
+  // }
+
+  // let num = [1, 2, 0, 0];
+  // let k = 34;
+  // console.log(addToArrayForm(num, k)); // Output: [1, 2, 3, 4]
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // PATTERN- 2
+
+  // @. Sum of 2 arrays.
+
+  // let arr1= [1,2,3,4];
+  // let arr2=[5,4]         Output= 1288
+
+  //   function addTwoArrays(arr1, arr2) {
+  //     let result = [];
+  //     let carry = 0;
+  //     let i = arr1.length - 1;
+  //     let j = arr2.length - 1;
+
+  //     while (i >= 0 || j >= 0 || carry > 0) {
+  //       let digit1 = i >= 0 ? arr1[i] : 0;
+  //       let digit2 = j >= 0 ? arr2[j] : 0;
+  //       let sum = digit1 + digit2 + carry;
+  //       carry = Math.floor(sum / 10);
+  //       result.push(sum % 10);
+  //       i--;
+  //       j--;
+  //     }
+
+  //     // The result array will be in reverse order, so reverse it
+  //     result.reverse();
+
+  //     return result.join(""); // Convert array to string
+  //   }
+
+  //   let arr1 = [1, 2, 3, 4];
+  //   let arr2 = [5, 4];
+  //   console.log(addTwoArrays(arr1, arr2)); // Output: 1288
+
+  // APPROACH-
+  // Create 4 variables result , carry , i and j and use while loop.
+  // then check condition i , j & carry should be greater than 0;
+  // then create 2 variables digit1 and digit2 to store last digit of both array with condition check.
+  // then add digit1 + digit2 + carry in sum and if there's any carry then divide the sum to get remender and store in carry
+  // Then push sum mode in result array and after that reverse the result and join
+  // ==========================================================================================
+
+  //  @7. Write a program to cyclically rotate an array by one.               -EASY
+
+  // LINK-
+  // https://www.youtube.com/watch?v=gJJ05Jc0gUk&t=185s
+  // https://www.youtube.com/watch?v=p2C6UD5pNZ4
+
+  //  let arr=[1,2,3,4,5];
+  //  function rotate(arr){
+  //   let lastValue= arr[arr.length-1]
+  //   console.log(lastValue)
+
+  //   for(let i =arr.length-1; i>0; i--){
+  //     debugger
+  //     arr[i]= arr[i-1];
+  //     console.log("1",arr);
+  //   }
+  //   arr[0]= lastValue;
+  //   console.log(arr);
+
+  // }
+
+  // rotate(arr);
+
+  // APPROACH-
+  // First store last elm of array in an array so that we can put at first index of array
+  // run loop from last and i should be greater than 0 and decrease i.
+  // then push every elm back one by one and store there before elm  then at last put lastvalue at arr[0] index.
+  // ==========================================================================================
+
+  // @. 2815. Max Pair Sum in an Array-   which are sum of 2 should be equal to sum          -EASY
+  // let a = [1,2,3,4,5,6]
+  // let sum = 5
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 53. Maximum Subarray                                                     -(EASY) (Kadane's Algorithm)
+  // Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+  // Example 1:
+  // Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+  // Output: 6
+  // Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+
+  // Example 2:
+  // Input: nums = [1]
+  // Output: 1
+  // Explanation: The subarray [1] has the largest sum 1.
+
+  // var maxSubArray = function (nums) {
+  //   // Initialize the max sum with the first element of the array...
+  //   let maxSum = nums[0];
+  //   // Traverse all elements through the loop starting from the second element...
+  //   for (let i = 1; i < nums.length; i++) {
+  //     // Update nums[i] to be the maximum of itself and the sum of itself with the previous element...
+  //     nums[i] = Math.max(nums[i], nums[i - 1] + nums[i]);
+  //     // Update maxSum to be the maximum of maxSum and nums[i]...
+  //     if (nums[i] > maxSum) maxSum = nums[i];
+  //   }
+  //   return maxSum; // Return the maximum subarray sum...
+  // };
+
+  // // Example usage
+  // console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // Output: 6
+  // console.log(maxSubArray([1])); // Output: 1
+  // console.log(maxSubArray([5, 4, -1, 7, 8])); // Output: 23
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 169. Majority Element                                                            -(HASHMAP)
+
+  // Given an array nums of size n, return the majority element.
+  // The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+  // Input: nums = [3,2,3]
+  // Output: 3
+  // Example 2:
+
+  // Input: nums = [2,2,1,1,1,2,2]
+  // Output: 2
+
+  // Function to find the majority element using a hash table
+  // function majorityElement(nums) {
+  //   const counts = {};
+  //   const majorityCount = Math.floor(nums.length / 2);
+
+  //   // Count the occurrences of each element
+  //   for (let i = 0; i < nums.length; i++) {
+  //     let num = nums[i];
+  //     if (counts[num] == null) {
+  //       counts[num] = 0;
+  //     }
+  //     counts[num]++;
+
+  //     // If an element becomes the majority, return it
+  //     if (counts[num] > majorityCount) {
+  //       return num;
+  //     }
+  //   }
+
+  //   // In case there's no majority element (though the problem assumes there always is)
+  //   return null;
+  // }
+
+  // // Test cases
+  // let nums1 = [3, 2, 3];
+  // console.log("Majority element in [3, 2, 3] is:", majorityElement(nums1)); // Output: 3
+
+  // let nums2 = [2, 2, 1, 1, 1, 2, 2];
+  // console.log(
+  //   "Majority element in [2, 2, 1, 1, 1, 2, 2] is:",
+  //   majorityElement(nums2)
+  // ); // Output: 2
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 1. TWO SUM                                                              - (EASY) (HASHMAP)
+
+  // function twoSum(nums, target) {
+  //   // STEP- 1 Use Map because its loop up time is fast and in this it uses hashmap to store all elm value
+  //   const numToIndex = new Map();
+
+  //   // STEP- 2 Loop through the array and store the value and its index in the map
+  //   for (let i = 0; i < nums.length; i++) {
+
+  //     // STEP- 3 Check if the complement of the current element is present in the map
+  //     const complement = target - nums[i];
+
+  //     // STEP- 4 If the complement is present, then return the indices of the current element and the complement element
+  //     if (numToIndex.has(complement)) {
+  //       return [numToIndex.get(complement), i];
+  //     }
+  //     // STEP- 5 If the complement is not present, then store the current element and its index in the map
+  //     numToIndex.set(nums[i], i);
+  //   }
+  //   return []; // Should never reach here if there is exactly one solution
+  // }
+
+  // // Example usage
+  // console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+  // console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
+  // console.log(twoSum([3, 3], 6)); // Output: [0, 1]
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // Find if there is any subarray with sum equal to 0
+
+  // function subArrayExists(arr) {
+  // Create a set to store prefix sums
+  //     debugger
+  //     const prefixSums = new Set();
+  //     let currentSum = 0;
+
+  //     // Iterate through the array using a traditional for loop
+  //     for (let i = 0; i < arr.length; i++) {
+  //         currentSum += arr[i];
+
+  //         // Check if the current sum is zero or if it has been seen before
+  //         if (currentSum === 0 || prefixSums.has(currentSum)) {
+  //             return true;
+  //         }
+
+  //         // Add the current sum to the set
+  //         prefixSums.add(currentSum);
+  //     }
+
+  //     // No zero sum subarray found
+  //     return false;
+  // }
+
+  // // Example usage:
+  // const arr = [4, 2, -3, 1, 6];
+  // console.log(subArrayExists(arr)); // Output: true
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 26 Find whether an array is a subset of another array
+
+  // /* Return true if arr2[] is a subset of arr1[] */
+  // function isSubset(arr1, arr2) {
+  //     // Convert arr1 to a Set
+  //     debugger
+  //     let setArr1 = new Set(arr1);
+
+  //     // Check if all elements of arr2 are in setArr1 using traditional for loop
+  //     for (let i = 0; i < arr2.length; i++) {
+  //         if (!setArr1.has(arr2[i])) {
+  //             return false;
+  //         }
+  //     }
+
+  //     return true;
+  // }
+
+  // // Driver Code
+  // let arr1 = [11, 1, 13, 21, 3, 7];
+  // let arr2 = [11, 3, 7, 1];
+
+  // if (isSubset(arr1, arr2)) {
+  //     console.log("arr2[] is a subset of arr1[]");
+  // } else {
+  //     console.log("arr2[] is not a subset of arr1[]");
+  // }
+
+  // // Additional test case
+  // arr1 = [1, 2, 3, 4, 5, 6];
+  // arr2 = [1, 2, 4];
+
+  // if (isSubset(arr1, arr2)) {
+  //     console.log("arr2[] is a subset of arr1[]");
+  // } else {
+  //     console.log("arr2[] is not a subset of arr1[]");
+  // }
+
+  // arr1 = [10, 5, 2, 23, 19];
+  // arr2 = [19, 5, 3];
+
+  // if (isSubset(arr1, arr2)) {
+  //     console.log("arr2[] is not a subset of arr1[]");
+  // } else {
+  //     console.log("arr2[] is not a subset of arr1[]");
+  // }
+
+  //////////////////////////////////////////////////////////////////////////////////////
+  // @.9. Minimise the maximum difference between heights                      - (EASY) [V.IMP]
+
+  // let arr = [5, 1, 15, 10];
+  // let k = 3;
+
+  // EXAMPLE -1
+
+  // function findDifference(arr, k) {
+  //   debugger;
+  //   // STEP -1 SORTING
+  //   let sortArray = arr.sort((a, b) => a - b); //  [1,5,10,15];
+
+  //   // STEP-2 GETTING DIFFERENCE between the maximum and minimum heights
+  //   let start = sortArray[0];
+  //   let end = sortArray[sortArray.length - 1]; // Storing last element 15 in end
+  //   let ans = end - start;
+
+  //   // STEP-3
+  //   let smallest = start + k;
+  //   let largest = end - k;
+
+  //   // Ensure smallest is less than or equal to largest
+  //   if (smallest > largest) {
+  //     let temp = smallest;
+  //     smallest = largest;
+  //     largest = temp;
+  //   }
+
+  //   // STEP - 4 RUN LOOP
+  //   // Adjusting heights by increasing or decreasing them by k
+  //   for (let i = 1; i < sortArray.length - 1; i++) {                // [4,1] [8,2] [13,7] [18,12]   =>  [4,2]= 2 Min from left  ||  [12,4]= 12 Max from right    Then 12-2 = 10  update ans =10
+  //     let subtract = sortArray[i] - k;
+  //     let add = sortArray[i] + k;
+
+  //     // Skip if the height after subtracting or adding k is within the bounds
+  //     if (subtract >= smallest || add <= largest) continue;
+
+  //     // Adjust smallest or largest based on which adjustment yields a smaller range
+  //     if (largest - subtract <= add - smallest) {
+  //       smallest = subtract;
+  //     } else {
+  //       largest = add;
+  //     }
+  //   }
+
+  //   return Math.min(ans, largest - smallest);
+  // }
+
+  // console.log(findDifference(arr, k));
+
+  // EXAMPLE -2
+
+  // function getMinDiff(arr, k) {
+  //   // Sort the array
+  //   arr.sort((a, b) => a - b);
+
+  //   let n = arr.length;
+  //   let ans = arr[n - 1] - arr[0];
+  //   let smallest = arr[0] + k;
+  //   let largest = arr[n - 1] - k;
+
+  //   for (let i = 0; i < n - 1; i++) {
+  //     let min = Math.min(smallest, arr[i + 1] - k);
+  //     let max = Math.max(largest, arr[i] + k);
+
+  //     if (min < 0) continue;
+
+  //     ans = Math.min(ans, max - min);
+  //   }
+
+  //   return ans;
+  // }
+
+  // // Test the function
+  // let arr = [5, 1, 15, 10];
+  // let k = 3;
+  // console.log(getMinDiff(arr, k));
+</script>

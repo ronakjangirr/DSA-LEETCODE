@@ -1,0 +1,745 @@
+<script>
+  //==============================|| THEORY ||===================================//
+
+  // TOPIC- DETAILS OF PATTERNS AND SEARCHING AND SORTING ALGORITHMS.
+
+  // # SEARCHING ALGORITHIUM-
+  // 1. Linear Search
+
+  // Simple and straightforward; useful for small arrays or unsorted arrays.
+  // Time Complexity: O(n)
+
+  // function linearSearch(arr, target) {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i] === target) {
+  //       return i;
+  //     }
+  //   }
+  //   return -1;
+  // }
+
+  // 2. Binary Search
+  // Binary Search is always applied on monotonic function (either an array is in increasing form of decreasing form).
+  // Efficient for sorted arrays.
+  // Time Complexity: O(log n)
+
+  // function binarySearch(arr, target) {
+  //   let left = 0, right = arr.length - 1;
+  //   while (left <= right) {
+  //     const mid = Math.floor((left + right) / 2);
+  //     if (arr[mid] === target) {
+  //       return mid;
+  //     } else if (arr[mid] < target) {
+  //       left = mid + 1;
+  //     } else {
+  //       right = mid - 1;
+  //     }
+  //   }
+  //   return -1;
+  // }
+
+  //   TOPIC- BINARY SEARCH
+
+  // Let arr= [11,22,33,44,55,66,77,88,99];
+  // Let searchNumber= 88
+
+  // STEPS-
+  // 1. First find mid element of array which is 55
+  // 2. Then check if mid element is equal to the searchNumber if true then return if not equal then not.
+  // 3. Then check to which side we want to move for checking if 88 is greater than 55 then move right side if not then move left.
+  // 4. Then again find middle of (right/ left side) then repeat the process.
+
+  // How to get mid element-
+  // Formula- (starting index + ending index/ 2)=>  0+5/2  = 2.5 => 2  This is mid index
+
+  //==============================|| THEORY ||===================================//
+
+  //==============================|| LEETCODE ||===================================//
+
+  // BINARY SEARCH                                                      -(EASY)
+
+  // EXAMPLE-1
+  // let data = [11,22,33,44,55,66,77,88, 99];
+  // let key=99;
+  // function search(){
+  //   let start= 0;
+  //   let end= data.length;
+  //   console.log(end)    // 8
+  //   let mid= Math.floor((start+end)/2);
+  //   console.log(mid)    // 4
+  //   while(start<=end){
+  //     if(data[mid]==key){
+  //       console.log("Result found at index:", mid);
+  //       return mid;
+  //     }
+
+  //     if(key> data[mid]){     // if key is greater than mid than move to right
+  //       start= mid +1         // move right
+  //     }else{
+  //       end= mid -1;         // move left
+  //     }
+  //     mid= Math.floor((start+end)/2);     // Update mid
+  //   }
+  //   console.log("Result not found");
+  //   return -1;      // If nothing gets
+  // }
+
+  // search()
+
+  // EXAMPLE-2     // Optimized Version
+
+  // function binarySearch(arr, target) {
+  //   let start = 0;
+  //   let end = arr.length - 1;
+  //   console.log(end)
+  //   while (start <= end) {
+  //     let mid = Math.floor((start + end) / 2);
+
+  //     if (arr[mid] === target) {
+  //       return mid; // Target found, return the index
+  //     } else if ( target > arr[mid] ) {
+  //       start = mid + 1; // Search in the right half
+  //     } else {
+  //       end = mid - 1; // Search in the left half
+  //     }
+  //   }
+
+  //   return -1; // Target not found
+  // }
+
+  // let data = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+  // let target = 99;
+  // let result = binarySearch(data, target);
+
+  //===================================================================================================
+
+  //@.1 Search 33 start and end index                                             -(EASY)
+
+  // let arr= [11,22,22,33,33,33,33,44,44,44,44,55,55,55,55,55];
+  // let search= 33;
+
+  // Function to find the first index of the target element
+  // function searchFirstIndex(search, arr) {
+  //   let start = 0;
+  //   let end = arr.length - 1;
+  //   let ans = -1;
+
+  //   while (start <= end) {
+  //     let mid = Math.floor((start + end) / 2);
+
+  //     if (arr[mid] === search) {
+  //       ans = mid;
+  //       end = mid - 1; // Move left to find the first occurrence
+  //     } else if (search > arr[mid]) {
+  //       start = mid + 1;
+  //     } else {
+  //       end = mid - 1;
+  //     }
+  //   }
+
+  //   console.log("First Index:", ans); // 3
+  //   return ans;
+  // }
+
+  // let firstIndex = searchFirstIndex(search, arr);
+  // console.log("First Index of", search, ":", firstIndex);
+
+  //===================================================================================================
+
+  // @.34. Find First and Last Position of Element in Sorted Array                      -(Medium)
+
+  // function searchFirstIndex(search, arr) {
+  //   let start = 0;
+  //   let end = arr.length - 1;
+  //   let ans = -1;
+
+  //   while (start <= end) {
+  //     let mid = Math.floor((start + end) / 2);
+
+  //     if (arr[mid] === search) {
+  //       ans = mid;
+  //       end = mid - 1; // Move left to find the first occurrence
+  //     } else if (search > arr[mid]) {
+  //       start = mid + 1;
+  //     } else {
+  //       end = mid - 1;
+  //     }
+  //   }
+
+  //   console.log("First Index:", ans); // 3
+  //   return ans;
+  // }
+
+  // let firstIndex = searchFirstIndex(search, arr);
+  // console.log("First Index of", search, ":", firstIndex);
+
+  // function searchLastIndex(search, arr) {
+  //   let start = 0;
+  //   let end = arr.length - 1;
+  //   let ans = -1;
+
+  //   while (start <= end) {
+  //     let mid = Math.floor((start + end) / 2);
+
+  //     if (arr[mid] === search) {
+  //       ans = mid;
+  //       start = mid + 1; // Move right to find the last occurrence
+  //     } else if (search > arr[mid]) {
+  //       start = mid + 1;
+  //     } else {
+  //       end = mid - 1;
+  //     }
+  //   }
+
+  //   console.log("Last Index:", ans); // 6
+  //   return ans;
+  // }
+
+  // let arr= [11,22,22,33,33,33,33,44,44,44,44,55,55,55,55,55];
+  // let search= 33;
+
+  // // Find the first and last index of the target element
+  // let lastIndex = searchLastIndex(search, arr);
+
+  // console.log("Last Index of", search, ":", lastIndex);
+
+  //===================================================================================================
+
+  // @.3159 Search total count of 44 in an array                                    -(MEDIUM)
+  // let arr= [11,22,22,33,33,33,33,44,44,44,44,55,55,55,55,55];
+
+  //===================================================================================================
+
+  // @ Find a peak element which is not smaller than its neighbours                  -(MEDIUM)
+
+  // let arr= [11,22,33,55,45, 35, 25, 15, 5];
+
+  // function findPeak(){
+  //  let start = 0;
+  //  let end = arr.length-1;
+  //  let mid= Math.floor((start+end) /2)
+  //  console.log(mid)
+  //  while(start<end){
+  //   if(arr[mid]<arr[mid+1]){
+  //     start = mid+1;
+  //   }else{
+  //     end= mid;
+  //   }
+  //   mid= Math.floor((start+end) /2)
+  //  }
+  //  console.log(`Your Peak number is present at index: ${start} => ${ arr[mid]} `)
+  //  return start
+  // }
+  // findPeak();
+
+  // APPROACH
+  // Do binary search and in if loop just compare mid is smaller thet mid +1 then move start to mid+1.
+
+  //===================================================================================================
+
+  // @ Get Pivot Element from a sorted and rotated array.                       -(EASY)
+
+  // let arr= [7,8,9,1,2,3];
+
+  // function getPivot(){
+  //   let start= 0;
+  //   let end= arr.length-1;
+  //   let mid = Math.floor((start+end)/2);
+  //   console.log(mid);
+
+  //   while(start<end){
+  //     if(arr[mid]>=arr[0]){
+  //       start= mid+1          // going to right side of 9
+  //     }
+  //     else{
+  //       end= mid;
+  //     }
+  //     mid = Math.floor((start+end)/2);
+  //   }
+  //   console.log(start);           // at index 3 which is 1
+  //   return start;
+  // }
+
+  // getPivot()
+
+  // APPROACH
+  // In If condition if mid is greater than arr[0] then increase start= mid+1;
+
+  //===================================================================================================
+
+  // @33. Search in Rotated Sorted array       - MOST IMPORTANT            -(MEDIUM)
+
+  // function binarySearch(arr, target) {
+  //   let left = 0;
+  //   let right = arr.length - 1;
+
+  //   while (left <= right) {
+  //     let mid = Math.floor((left + right) / 2);
+
+  //     if (arr[mid] === target) {
+  //       return mid; // Target found at index mid
+  //     } else if (arr[mid] < target) {
+  //       left = mid + 1; // Search in the right half
+  //     } else {
+  //       right = mid - 1; // Search in the left half
+  //     }
+  //   }
+
+  //   return -1; // Target not found
+  // }
+
+  // let arr = [7, 8, 9, 1, 2, 3];
+
+  // // Sort the array
+  // arr.sort((a, b) => a - b);
+
+  // // Search for the element 2
+  // let target = 2;
+  // let index = binarySearch(arr, target);
+
+  // console.log("Sorted array:", arr);
+  // console.log("Index of element", target, ":", index);
+
+  //===================================================================================================
+
+  // @69. SQRT-                                                         -(EASY)
+  // Example-  25->    5
+  // Example-  8->     2
+
+  // function binarySearch(n) {
+  // if (n < 0) return NaN; // Square root of negative numbers is not defined in real numbers
+  // if (n === 0 || n === 1) return n;
+
+  //   let start = 0;
+  //   let end = n;
+
+  //   let ans = -1;
+  //   while (start <= end) {
+  //     let mid = Math.floor((start + end) / 2); // Write mid here to recalculte the value
+  //     // console.log(mid)
+  //     let square = mid * mid; //18*18 => 324   so now above 18 , 19,20 ... it will be giving much greater value so move to left side.
+  //     if (square === n) {
+  //       return mid;
+  //     } else if (square < n) {
+  //       // If square is less than n then move to right side
+  //       ans = mid;
+  //       start = mid + 1;
+  //     } else {
+  //       end = mid - 1;
+  //     }
+  //   }
+  //   return ans;
+  // }
+
+  // let n = 36;
+  // console.log(`Square Root is ${binarySearch(n)}`); // Should print 6
+
+  // Get mid then do square of mid then check if square is equal to n then return mid and continue binary search.
+  ////////////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @.3159. Find Occurrences of an Element in an Array                                 -(EASY)
+      // Explanation-
+      // const nums = [1, 3, 1, 7];
+      // const queries = [1, 3, 2, 4];
+      // const x = 1;
+      // store indexes of x in nums if gets in queries and if not get then store -1
+
+      // function findOccurrences(nums, queries, x) {
+      //   debugger;
+      //   // Step 1: First Collect all indexes of x which is present in nums in occIndexes array
+      //   const occIndexes = [];
+      //   for (let i = 0; i < nums.length; i++) {
+      //     if (nums[i] === x) {
+      //       // If x(1) is found in nums array the push its index in occIndexes
+      //       occIndexes.push(i);
+      //     }
+      //   }
+
+      //   // Step 2: Create an array to store the ans and now run a loop upto queries.length
+      //   const answer = [];
+      //   for (let i = 0; i < queries.length; i++) {
+      //     const checkIndex = queries[i] - 1; // -1 is used bcoz to check below occIndexes.length
+      //     // STEP- 3 If checkIndex is less than occIndexes than push index and if greater then push -1
+      //     if (checkIndex < occIndexes.length) {
+      //       answer.push(occIndexes[checkIndex]);
+      //     } else {
+      //       answer.push(-1);
+      //     }
+      //   }
+
+      //   return answer;
+      // }
+
+      // // Example usage:
+      // const nums = [1, 3, 1, 7];
+      // const queries = [1, 3, 2, 4];
+      // const x = 1;
+      // console.log(findOccurrences(nums, queries, x)); // Output: [0, -1, 2, -1]
+
+      // const nums2 = [1, 2, 3];
+      // const queries2 = [10];
+      // const x2 = 5;
+      // console.log(findOccurrences(nums2, queries2, x2)); // Output: [-1]
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @. Find a Fixed Point (Value equal to index) in a given array                            -(EASY) GFG
+      //Explanation- Check if each elm is present at there index position if present the show which elm.
+      // https://www.youtube.com/watch?v=WrDo9DitoxI
+
+      // ******** THROUGH LINEAR SEARCH - LESS EFFICIENT ********
+
+      // function check(arr) {
+      //   let ans = [];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (arr[i] == i + 1) {
+      //       ans.push(arr[i]);
+      //     }
+      //   }
+      //   return ans;
+      // }
+
+      // let arr = [-10, 2, 5, 8, 17];
+      // console.log(check(arr)); // [2]
+
+      // ******** THROUGH BINARY SEARCH - MORE EFFICIENT ********
+
+      // function findFixedPoint(nums) {
+      //   let left = 0;
+      //   let right = nums.length - 1;
+
+      //   while (left <= right) {
+      //     let mid = Math.floor((left + right) / 2);
+
+      //     if (nums[mid] === mid) {
+      //       return mid;
+      //     } else if (nums[mid] < mid) {
+      //       left = mid + 1;
+      //     } else {
+      //       right = mid - 1;
+      //     }
+      //   }
+
+      //   return -1; // No fixed point found
+      // }
+
+      // // Driver Code
+      // let arr = [-10, -1, 0, 3, 10, 11, 30, 50, 100];
+      // document.write("Fixed Point is " + findFixedPoint(arr));
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @. Square root of an integer                                                    - (EASY) GFG
+      // Given an integer X, find its square root. If X is not a perfect square, then return floor(√x).
+      // Examples :
+      // Input: x = 4
+      // Output: 2
+      // Explanation: The square root of 4 is 2.
+
+      // Input: x = 11
+      // Output: 3
+      // Explanation:  The square root of 11 lies in between 3 and 4 so floor of the square root is 3.
+
+      // function floorSqrt(x) {
+      //   // Edge cases
+      //   if (x === 0 || x === 1) {
+      //     return x;
+      //   }
+
+      //   // Binary search variables
+      //   let start = 1,
+      //     end = x,
+      //     ans = 0;
+      //   // Perform binary search
+      //   while (start <= end) {
+      //     let mid = Math.floor((start + end) / 2);
+
+      //     // Check if mid*mid is equal to x
+      //     if (mid * mid === x) {
+      //       return mid;
+      //     }
+
+      //     // If mid*mid is less than x, update answer and search in the right half
+      //     if (mid * mid < x) {
+      //       start = mid + 1;
+      //       ans = mid;
+      //     } else {
+      //       // If mid*mid is greater than x, search in the left half
+      //       end = mid - 1;
+      //     }
+      //   }
+
+      //   return ans;
+      // }
+
+      // let x = 16;
+      // console.log(floorSqrt(x));
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      //@. Find the missing and repeating number                                        -(EASY) GFG
+
+      // Given an unsorted array of size n. Array elements are in the range of 1 to n.
+      // One number from set {1, 2, …n} is missing and one number occurs twice in the array. Find these two numbers.
+      // Examples:
+      // Input: arr[] = {3, 1, 3}
+      // Output: Missing = 2, Repeating = 3
+      // Explanation: In the array, 2 is missing and 3 occurs twice
+
+      // function findRepeatingAndMissing(arr) {
+      //   const n = arr.length;
+      //   const hashTable = {}; // Creating hash table to maintain count of elements.
+      //   let repeatingNumber = -1;
+      //   let missingNumber = -1;
+
+      //   // Count occurrences of each element
+      //   for (let i = 0; i < n; i++) {
+      //     if (hashTable[arr[i]]) {
+      //       hashTable[arr[i]]++;
+      //     } else {
+      //       hashTable[arr[i]] = 1;
+      //     }
+      //     if (hashTable[arr[i]] > 1) {
+      //       repeatingNumber = arr[i];
+      //     }
+      //   }
+
+      //   // Find the missing number
+      //   for (let i = 1; i <= n; i++) {
+      //     if (!hashTable[i]) {
+      //       missingNumber = i;
+      //       break;
+      //     }
+      //   }
+
+      //   console.log(`The repeating number is ${repeatingNumber}.`);
+      //   console.log(`The missing number is ${missingNumber}.`);
+      // }
+
+      // // Example usage:
+      // const arr = [7, 3, 4, 5, 5, 6, 2];
+      // findRepeatingAndMissing(arr); // Output: The repeating number is 5. The missing number is 1.
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @. 169. Majority Element                                                       -(EASY)
+
+      // Given an array nums of size n, return the majority element.
+      // The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that
+      // the majority element always exists in the array.
+
+      // Example 1:
+      // Input: nums = [3,2,3]
+      // Output: 3
+
+      // Example 2:
+      // Input: nums = [2,2,1,1,1,2,2]
+      // Output: 2
+
+      // NOTE- Used Boyer-Moore Voting Algorithm because Hashtable taking extra space
+
+      // function majorityElement(nums) {
+      //   let count = 0;
+      //   let candidate = 0;
+
+      //   for (let i = 0; i < nums.length; i++) {
+      //     let num = nums[i];
+
+      //     if (count === 0) {
+      //       candidate = num;
+      //     }
+
+      //     if (num === candidate) {
+      //       count++;
+      //     } else {
+      //       count--;
+      //     }
+      //   }
+
+      //   return candidate;
+      // }
+
+      // // Example usage:
+      // const nums1 = [3, 2, 3];
+      // console.log(majorityElement(nums1)); // Output: 3
+
+      // const nums2 = [2, 2, 1, 1, 1, 2, 2];
+      // console.log(majorityElement(nums2)); // Output: 2
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @. Find a pair with a given difference                                          -(EASY)  GFG
+
+      // function findPairWithDifference(arr, n) {
+      //   let foundPair = false;
+      //   for (let i = 0; i < arr.length; i++) {
+      //     for (let j = i + 1; j < arr.length; j++) {
+      //       if (Math.abs(arr[i] - arr[j]) === n) {
+      //         console.log(`Pair Found: (${arr[i]}, ${arr[j]})`);
+      //         foundPair = true;
+      //       }
+      //     }
+      //   }
+
+      //   if (!foundPair) {
+      //     console.log("No Such Pair");
+      //   }
+      // }
+
+      // // Example usage:
+      // const arr1 = [5, 20, 3, 2, 50, 80];
+      // const n1 = 78;
+      // findPairWithDifference(arr1, n1); // Output: Pair Found: (2, 80)
+
+      // const arr2 = [90, 70, 20, 80, 50];
+      // const n2 = 45;
+      // findPairWithDifference(arr2, n2); // Output: No Such Pair
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      //@. K-th Element of Two Sorted Arrays              - THIS IS NOT OPTIMAL SOLUTION IN SPACE COMPLEXCITY
+
+      // function mergeSortedArrays(arr1, arr2, k) {
+      //   const mergedArray = []; //  [1, 2, 3, 4, 6, 7, 8, 9, 10]
+      //   let i = 0,
+      //     j = 0;
+
+      //   // Traverse both arrays and insert the smaller element into the merged array
+      //   while (i < arr1.length && j < arr2.length) {
+      //     if (arr1[i] < arr2[j]) {
+      //       mergedArray.push(arr1[i]);
+      //       i++;
+      //     } else {
+      //       mergedArray.push(arr2[j]);
+      //       j++;
+      //     }
+      //   }
+
+      //   // If there are remaining elements in arr1, add them to the merged array
+      //   while (i < arr1.length) {
+      //     mergedArray.push(arr1[i]);
+      //     i++;
+      //   }
+
+      //   // If there are remaining elements in arr2, add them to the merged array
+      //   while (j < arr2.length) {
+      //     mergedArray.push(arr2[j]);
+      //     j++;
+      //   }
+
+      //   return mergedArray[k - 1];
+      // }
+
+      // // Example usage:
+      // const arr1 = [2, 3, 6, 7, 9];
+      // const arr2 = [1, 4, 8, 10];
+      // const k = 5;
+      // const mergedArray = mergeSortedArrays(arr1, arr2, k);
+      // console.log(mergedArray); // Output: 6
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // Find Nth Root Of M
+
+      // function nthRoot(n, m) {
+      //   return Math.pow(m, 1 / n);
+      // }
+
+      // // Example usage:
+      // const n = 2;
+      // const m = 9;
+      // const result = nthRoot(n, m);
+      // console.log(result); // Output: 3
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // 540. Single Element in a Sorted Array                                           - (MEDIUM)
+      // You are given a sorted array consisting of only integers where every element appears exactly twice,
+      // except for one element which appears exactly once. Return the single element that appears only once.
+
+      // Example 1:
+      // Input: nums = [1,1,2,3,3,4,4,8,8]
+      // Output: 2
+
+      // Example 2:
+      // Input: nums = [3,3,7,7,10,11,11]
+      // Output: 10
+
+      // function singleNonDuplicate(nums) {
+      //   let left = 0;
+      //   let right = nums.length - 1;
+
+      //   while (left < right) {
+      //     let mid = Math.floor(left + (right - left) / 2);
+
+      //     // Ensure mid is even
+      //     if (mid % 2 === 1) mid--;
+
+      //     // Check if the single element is in the right half
+      //     if (nums[mid] === nums[mid + 1]) {
+      //       left = mid + 2;
+      //     } else {
+      //       right = mid;
+      //     }
+      //   }
+
+      //   // The left variable will point to the single element
+      //   return nums[left];
+      // }
+
+      // // Example usage
+      // let nums1 = [1, 1, 2, 3, 3, 4, 4, 8, 8];
+      // console.log(singleNonDuplicate(nums1)); // Output: 2
+
+      // let nums2 = [3, 3, 7, 7, 10, 11, 11];
+      // console.log(singleNonDuplicate(nums2)); // Output: 10
+
+      ////////////////////////////////////////////////////////////////////////////////////////
+
+      // @. DoubleHelix SPOJ                                                    -(CHECK LOGIC AGAIN)
+      // function maxPathSum(arr1, arr2) {
+      //   let i = 0,
+      //     j = 0;
+      //   let sum1 = 0,
+      //     sum2 = 0;
+      //   let result = 0;
+
+      //   while (i < arr1.length && j < arr2.length) {
+      //     if (arr1[i] < arr2[j]) {
+      //       sum1 += arr1[i++];
+      //     } else if (arr1[i] > arr2[j]) {
+      //       sum2 += arr2[j++];
+      //     } else {
+      //       result += Math.max(sum1, sum2) + arr1[i];
+      //       sum1 = 0;
+      //       sum2 = 0;
+      //       i++;
+      //       j++;
+      //     }
+      //   }
+
+      //   while (i < arr1.length) {
+      //     sum1 += arr1[i++];
+      //   }
+
+      //   while (j < arr2.length) {
+      //     sum2 += arr2[j++];
+      //   }
+
+      //   result += Math.max(sum1, sum2);
+
+      //   return result;
+      // }
+
+      // // Example usage
+      // let arr1 = [2, 3, 7, 10, 12];
+      // let arr2 = [1, 5, 7, 8];
+      // console.log(maxPathSum(arr1, arr2)); // Output: 35
+
+      // let arr3 = [3, 6, 7, 8, 10, 12, 15, 30, 34];
+      // let arr4 = [1, 2, 4, 8, 10, 15, 17, 28, 34];
+      // console.log(maxPathSum(arr3, arr4)); // Output: 122
+
+</script>

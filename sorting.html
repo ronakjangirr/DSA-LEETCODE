@@ -1,0 +1,206 @@
+<script>
+
+//==============================|| THEORY ||===================================//
+
+// # SORTING ALGORITHMS
+
+// 1. Bubble Sort
+
+// Simple but inefficient for large arrays.
+// Time Complexity: O(n^2)
+
+// function bubbleSort(arr) {
+//   let n = arr.length;
+//   for (let i = 0; i < n - 1; i++) {
+//     for (let j = 0; j < n - i - 1; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+//       }
+//     }
+//   }
+//   return arr;
+// }
+
+
+
+// 2. Insertion Sort
+
+// Efficient for small arrays or partially sorted arrays.
+// Time Complexity: O(n^2)
+
+// function insertionSort(arr) {
+//   for (let i = 1; i < arr.length; i++) {
+//     let key = arr[i];
+//     let j = i - 1;
+//     while (j >= 0 && arr[j] > key) {
+//       arr[j + 1] = arr[j];
+//       j--;
+//     }
+//     arr[j + 1] = key;
+//   }
+//   return arr;
+// }
+
+
+
+// 3. Quick Sort
+
+// Efficient and commonly used sorting algorithm.
+// Time Complexity: O(n log n) on average, O(n^2) in the worst case
+
+// function quickSort(arr) {
+//   if (arr.length <= 1) {
+//     return arr;
+//   }
+//   const pivot = arr[Math.floor(arr.length / 2)];
+//   const left = arr.filter(x => x < pivot);
+//   const right = arr.filter(x => x > pivot);
+//   const middle = arr.filter(x => x === pivot);
+//   return [...quickSort(left), ...middle, ...quickSort(right)];
+// }
+
+
+
+// 4. Merge Sort
+
+// Efficient and stable sorting algorithm.
+// Time Complexity: O(n log n)
+
+// function mergeSort(arr) {
+//   if (arr.length <= 1) {
+//     return arr;
+//   }
+//   const mid = Math.floor(arr.length / 2);
+//   const left = mergeSort(arr.slice(0, mid));
+//   const right = mergeSort(arr.slice(mid));
+//   return merge(left, right);
+// }
+
+// function merge(left, right) {
+//   let result = [];
+//   while (left.length && right.length) {
+//     if (left[0] < right[0]) {
+//       result.push(left.shift());
+//     } else {
+//       result.push(right.shift());
+//     }
+//   }
+//   return result.concat(left, right);
+// }
+
+
+//==============================|| THEORY ||===================================//
+
+
+//==============================|| LEETCODE ||===================================//
+
+// # SELECTION SORT
+  // Best for small arrays
+
+  // let arr = [75, 9, 20, 64, 5, 3];
+
+  // function selectionSort() {
+  //   for (let i = 0; i < arr.length - 1; i++) {
+  //     let min = i;
+  //     debugger
+  //     for (j = i + 1; j < arr.length; j++) {
+  //       if (arr[j] < arr[min]) {
+  //         min = j;                // It will store minimum index so that it can swap it below
+  //       }
+  //     }
+  //     if (min !== i) {
+  //       let temp = arr[i];
+  //       arr[i] = arr[min];
+  //       arr[min] = temp;
+  //     }
+  //   }
+  // }
+
+  // selectionSort();
+  // console.log(arr);
+
+  // Is selection sort is stable algorithum or unsatble
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+  // # BUBBLE SORT
+
+  // let arr = [75, 9, 20, 64, 5, 3];
+
+  // function bubbleSort() {
+  //   for (let i = 0; i < arr.length - 1; i++) {
+  //     for (let j = 0; j < arr.length - 1 - i; j++) {
+  //       // Every time j will be starts from 0
+  //       if (arr[j] > arr[j + 1]) {
+  //         // Swap arr[j] and arr[j + 1]
+  //         let temp = arr[j];
+  //         arr[j] = arr[j + 1];
+  //         arr[j + 1] = temp;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // bubbleSort();
+  // console.log(arr); // Output the sorted array
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+  // # INSERTATION SORT
+
+  // let arr = [75, 9, 20, 64, 5, 3];
+
+  // function insertionSort() {
+  //   for (let i = 1; i < arr.length; i++) {
+  //     // Start from the second element (index 1)
+  //     let temp = arr[i];
+  //     let j = i - 1;
+  //     while (j >= 0 && arr[j] > temp) {
+  //       // Correct loop condition
+  //       arr[j + 1] = arr[j]; // Shift element to the right
+  //       j--;
+  //     }
+  //     arr[j + 1] = temp; // Place temp at the correct position
+  //   }
+  // }
+
+  // insertionSort();
+  // console.log(arr);
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+  // @4. Given an array which consists of only 0, 1 and 2..
+
+  // Ans- used count sort method
+
+  // function sort012(arr) {
+  //   // Variables to maintain
+  //   // the count of 0's,
+  //   // 1's and 2's in the array
+  // //   debugger
+  //   let count0 = 0;
+  //   let count1 = 0;
+  //   let count2 = 0;
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i] == 0) count0++;
+  //     if (arr[i] == 1) count1++;
+  //     if (arr[i] == 2) count2++;
+  //   }
+
+  //   // Putting the 0's in the
+  //   // array in starting.
+  //   for (let i = 0; i < count0; i++) arr[i] = 0;
+  //   // Putting the 1's in the
+  //   // array after the 0's.
+  //   for (let i = count0; i < count0 + count1; i++) arr[i] = 1;
+  //   console.log("arr1",arr)
+  //   // Putting the 2's in the
+  //   // array after the 1's
+  //   for (let i = count0 + count1; i < arr.length; i++) arr[i] = 2;
+
+  //   return console.log("Final",arr)
+  // }
+
+  // let arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1];
+  // sort012(arr);
+</script>

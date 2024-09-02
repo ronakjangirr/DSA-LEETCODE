@@ -1,0 +1,1039 @@
+<script>
+  //==============================|| THEORY ||===================================//
+
+  // Pointers
+  // Variables assigned address on that address the value is stored.  And that address in in the hexa-decimal format.
+
+  // 2 pointer algorithm - used for searching and sorting on array, string and linked List.
+
+  // 2 types of Variants-
+  // 1. Opposite directional- 1 pointer starts from beginning and another starts from end and come close to each other.
+
+  // 2. Equi- directional - both starts from beginning and 1 moves slowly and other moves fast.
+
+  // 1. Two Pointer Technique
+
+  // Useful for problems involving pairs or subarrays, especially in sorted arrays.
+  // Examples: finding pairs with a given sum, removing duplicates.
+
+  // function twoSum(nums, target) {
+  //   let left = 0, right = nums.length - 1;
+  //   while (left < right) {
+  //     const sum = nums[left] + nums[right];
+  //     if (sum === target) {
+  //       return [left, right];
+  //     } else if (sum < target) {
+  //       left++;
+  //     } else {
+  //       right--;
+  //     }
+  //   }
+  //   return [];
+  // }
+
+  //==============================|| THEORY ||===================================//
+
+  //==============================|| LEETCODE ||===================================//
+
+  //@. Reverse array                                            -(EASY)
+  // 2 Pointers approach.
+
+  // let arr = [11, 22, 33, 44, 55, 66];
+  // Expected output- [66, 55, 44, 33, 22, 11]
+
+  // function reverseArray() {
+  //   let start = 0;
+  //   let end = arr.length - 1;
+
+  //   while (start < end) {
+  //     let temp = arr[start];
+  //     arr[start] = arr[end];
+  //     arr[end] = temp;
+
+  //     start++;
+  //     end--;
+  //   }
+  //   return arr;
+  // }
+
+  // reverseArray();
+  // console.log(arr);
+
+  // APPROACH-
+  // Create 2 variables start & end and assign its value 0 and arr length,
+  // then run while loop until start is less than end then swap elm until it matches the condition.
+  // and increase start and decrease end.
+
+  // ==========================================================================================
+
+  // @. 349. Find the Union and Intersection of the two sorted arrays (Find common in 2 arrays).   - EASY
+  // LINK- https://www.youtube.com/watch?v=OxIDEwIG6n4
+
+  //  function findUnionAndIntersection(arr1, arr2) {
+  //   let unionResult = [];
+  //   let intersectionResult = [];
+  //   let i = 0, j = 0;
+
+  //   while (i < arr1.length && j < arr2.length) {
+  //     debugger
+  //     if (arr1[i] < arr2[j]) {
+  //       unionResult.push(arr1[i]);
+  //       i++;
+  //     } else if (arr1[i] > arr2[j]) {
+  //       unionResult.push(arr2[j]);
+  //       j++;
+  //     } else {                      // if both are equal
+  //       unionResult.push(arr1[i]);        // then also push arr1[1] in union array
+  //       intersectionResult.push(arr1[i]);   // and also push in intersectionResult array
+  //       i++;
+  //       j++;
+  //     }
+  //   }
+
+  //   // Adding remaining elements of arr1, if any
+  //   while (i < arr1.length) {
+  //     unionResult.push(arr1[i]);
+  //     i++;
+  //   }
+
+  //   // Adding remaining elements of arr2, if any
+  //   while (j < arr2.length) {
+  //     unionResult.push(arr2[j]);
+  //     j++;
+  //   }
+
+  //   return {
+  //     union: unionResult,
+  //     intersection: intersectionResult
+  //   };
+  // }
+
+  // // Test case 1
+  // let arr1 = [1, 3, 4, 5, 7];
+  // let arr2 = [2, 3, 5, 6];
+  // let result1 = findUnionAndIntersection(arr1, arr2);
+  // console.log("Union:", result1.union); // [1, 2, 3, 4, 5, 6, 7]
+  // console.log("Intersection:", result1.intersection); // [3, 5]
+
+  // APPROACH-
+  // Create 4 variables union & intersection are empty array and i and j will both start from 0.
+  // then run while loop i and j should always be less than arr length
+  // Then apply condition if arr1 elem is less than arr2 elem then push arr1 elm into union and vice versa
+  // then push its remaining elm also and increase i and j also and in intersection push that elm which are already duplicate
+
+
+  // ABOVE AND BELOW QUESTION IS SAME
+
+
+  // @349. Find the Union and Intersection of the two sorted arrays.              - (EASY)
+
+  // LINK- https://www.youtube.com/watch?v=OxIDEwIG6n4
+
+  // function findUnionAndIntersection(arr1, arr2) {
+  //   let unionResult = [];
+  //   let intersectionResult = [];
+  //   let i = 0, j = 0;
+
+  //   while (i < arr1.length && j < arr2.length) {
+  //     debugger
+  //     if (arr1[i] < arr2[j]) {
+  //       unionResult.push(arr1[i]);
+  //       i++;
+  //     } else if (arr1[i] > arr2[j]) {
+  //       unionResult.push(arr2[j]);
+  //       j++;
+  //     } else {                      // if both are equal
+  //       unionResult.push(arr1[i]);        // then also push arr1[1] in union array
+  //       intersectionResult.push(arr1[i]);   // and also push in intersectionResult array
+  //       i++;
+  //       j++;
+  //     }
+  //   }
+
+  //   // Adding remaining elements of arr1, if any
+  //   while (i < arr1.length) {
+  //     unionResult.push(arr1[i]);
+  //     i++;
+  //   }
+
+  //   // Adding remaining elements of arr2, if any
+  //   while (j < arr2.length) {
+  //     unionResult.push(arr2[j]);
+  //     j++;
+  //   }
+
+  //   return {
+  //     union: unionResult,
+  //     intersection: intersectionResult
+  //   };
+  // }
+
+  // // Test case 1
+  // let arr1 = [1, 3, 4, 5, 7];
+  // let arr2 = [2, 3, 5, 6];
+  // let result1 = findUnionAndIntersection(arr1, arr2);
+  // console.log("Union:", result1.union); // [1, 2, 3, 4, 5, 6, 7]
+  // console.log("Intersection:", result1.intersection); // [3, 5]
+
+  // //Test case 2
+  // arr1 = [2, 5, 6];
+  // arr2 = [4, 6, 8, 10];
+  // let result2 = findUnionAndIntersection(arr1, arr2);
+  // console.log("Union:", result2.union); // [2, 4, 5, 6, 8, 10]
+  // console.log("Intersection:", result2.intersection); // [6]
+
+
+  // ABOVE AND BELOW QUESTION IS SAME
+
+
+
+  //@.88 Merge Sorted Array.                                                      -(EASY)
+  // 2 arrays are given and create 3rd array and it should be sorted.
+  // Output should be - [3,5,9,11,20,22,33,44,55,64,66,75]
+
+  // let arr1 = [11, 22, 33, 44, 55, 66];
+  // let arr2 = [3, 5, 9, 64, 75];
+
+  // function mergeSortedArray(arr1, arr2) {
+  //   let newArray = [];
+  //   let i = 0,
+  //     j = 0;
+  //   debugger
+  //   // Traverse both arrays and merge them in sorted order
+  //   while (i < arr1.length && j < arr2.length) {
+  //     if (arr1[i] <= arr2[j]) {
+  //       newArray.push(arr1[i]);
+  //       i++;
+  //     } else {
+  //       newArray.push(arr2[j]);
+  //       j++;
+  //     }
+  //   }
+
+  //   // Add remaining elements from arr1 if any
+  //   while (i < arr1.length) {
+  //     newArray.push(arr1[i]);
+  //     i++;
+  //   }
+
+  //   // Add remaining elements from arr2 if any
+  //   while (j < arr2.length) {
+  //     newArray.push(arr2[j]);
+  //     j++;
+  //   }
+
+  //   return newArray;
+  // }
+
+  // console.log(mergeSortedArray(arr1, arr2));
+
+  // ==========================================================================================
+
+  // @189. Rotate Array.                                                -(MEDIUM)
+  // Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+  // Example 1:
+  // Input: nums = [1,2,3,4,5,6,7], k = 3
+  // Output: [5,6,7,1,2,3,4]
+
+  // function rotate(nums, k) {
+  //   const n = nums.length;
+  //   k = k % n; // Get the effective rotation steps
+
+  //   // Helper function to reverse a portion of the array
+  //   function reverse(start, end) {
+  //     while (start < end) {
+  //       let temp = nums[start];
+  //       nums[start] = nums[end];
+  //       nums[end] = temp;
+  //       start++;
+  //       end--;
+  //     }
+  //   }
+
+  //   // Step 1: Reverse the entire array
+  //   reverse(0, n - 1);
+  //   // Step 2: Reverse the first k elements
+  //   reverse(0, k - 1);
+  //   // Step 3: Reverse the remaining n-k elements
+  //   reverse(k, n - 1);
+
+  //   return nums;
+  // }
+
+  // // Example usage
+  // let nums = [1, 2, 3, 4, 5, 6, 7];
+  // let k = 3;
+  // console.log(rotate(nums, k)); // Output: [5, 6, 7, 1, 2, 3, 4]
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // @. Rotate Array.                                                -(MEDIUM)-CHECK ONCE
+  // Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+  // Example 1:
+  // Input: nums = [1,2,3,4,5,6,7], k = 3
+  // Output: [5,6,7,1,2,3,4]
+
+  // function rotateArray() {
+  //   let arr = [0, 1, 0, 3, 12];
+  //   let k = 3;
+  //   let n = arr.length;
+  //   let temp = new Array(n);
+  //   debugger
+
+  //   for (let i = 0; i < n; i++) {
+  //     temp[(i + k) % n] = arr[i];
+  //   }
+
+  //   for (let i = 0; i < n; i++) {
+  //     arr[i] = temp[i];
+  //   }
+
+  //   return arr;
+  // }
+
+  // console.log(rotateArray()); // Output: [3, 12, 0, 0, 1]
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  //@. Given an array/list 'ARR' of integers and a position ‘M’.
+  // You have to reverse the array after that position.                                     -(EASY)
+
+  // EXAMPLE-1
+  // We have an array ARR = {1, 2, 3, 4, 5, 6} and M = 3 , considering 0
+  // based indexing so the subarray {5, 6} will be reversed and our
+  // Expected output- {1, 2, 3, 4, 6, 5}.
+
+  // let arr = [11, 22, 33, 44, 55, 66];
+  // let M= 3;
+
+  // function reverseArray(arr, M) {
+  //   let start= M+1;
+  //   let end= arr.length-1;
+
+  //   while(start<end){
+  //     let temp = arr[start];
+  //     arr[start] = arr[end];
+  //     arr[end] = temp;
+
+  //     start++;
+  //     end--;
+  //   }
+  // }
+
+  // reverseArray(arr, M);
+  // console.log(arr);
+
+  // EXAMPLE-2
+
+  // let arr = [11, 22, 33, 44, 55, 66];
+  // let M = 3;
+  // function rotateArray() {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i] == arr[M]) {
+  //       let temp = arr[i];
+  //       arr[i] = arr[i + 1];
+  //       arr[i + 1] = temp;
+  //     }
+  //   }
+  //   return arr;
+  // }
+
+  // console.log(rotateArray()); // Output: [3, 12, 0, 0, 1]
+
+  // APPROACH-
+  // Run loop up to arr length when came upto given index then swap it with +1 index
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // @.
+
+  // function merge(nums1, m, nums2, n) {
+  //   // Initialize pointers
+  //   let i = m - 1; // Pointer for the end of initial part of nums1
+  //   let j = n - 1; // Pointer for the end of nums2
+  //   let k = m + n - 1; // Pointer for the end of nums1
+
+  //   // Merge in reverse order
+  //   while (i >= 0 && j >= 0) {
+  //     if (nums1[i] > nums2[j]) {
+  //       nums1[k] = nums1[i];
+  //       i--;
+  //     } else {
+  //       nums1[k] = nums2[j];
+  //       j--;
+  //     }
+  //     k--;
+  //   }
+
+  //   // Copy remaining elements of nums2 if any
+  //   while (j >= 0) {
+  //     nums1[k] = nums2[j];
+  //     j--;
+  //     k--;
+  //   }
+
+  //   // No need to copy the remaining elements of nums1 since they are already in place
+  // }
+
+  // // Example usage
+  // let nums1 = [1, 2, 3, 0, 0, 0];
+  // let m = 3;
+  // let nums2 = [2, 5, 6];
+  // let n = 3;
+
+  // merge(nums1, m, nums2, n);
+  // console.log(nums1); // Output: [1, 2, 2, 3, 5, 6]
+
+  // ==========================================================================================
+
+  // @. SORT 0, 1 from array [1,0,1,1,0,0,1,0]                        -(EASY)
+
+  //   function sortBinaryArray(arr) {
+  // let start = 0;
+  // let end = arr.length - 1;
+  // while (start < end) {
+  //   // Move start pointer right if it points to 0
+  //   if (arr[start] === 0) {
+  //     start++;
+  //     continue; // Move to the next iteration
+  //   }
+
+  //   // Move end pointer left if it points to 1
+  //   if (arr[end] === 1) {
+  //     end--;
+  //     continue; // Move to the next iteration
+  //   }
+
+  //   // Swap arr[start] and arr[end]
+  //   if (arr[start] > arr[end]) {
+  //     let temp = arr[start];
+  //     arr[start] = arr[end];
+  //     arr[end] = temp;
+  //   }
+
+  //   // Move the pointers
+  //   start++;
+  //   end--;
+  // }
+  // return arr;
+  //   }
+
+  //   // Example usage
+  //   const arr = [1, 0, 1, 1, 0, 0, 1, 0];
+  //   console.log(sortBinaryArray(arr)); // Output: [0, 0, 0, 0, 1, 1, 1, 1]
+
+    // APPROACH-
+    // Declare 2 variables start=0 and end=arr.length 
+    // then if start got 0 then ++ and end got 1 then -- 
+    // after that check condition if start is smaller than end then swap each other.
+
+  // ==========================================================================================
+
+  // @. SORT 0, 1 ,2 from array [1,0,1,2,0,2,1,0]                     -(EASY) -IMP
+    
+  // EXAMPLE- 1
+
+  //   function sortArray012(arr) {
+  //     let low = 0;
+  //     let mid = 0;
+  //     let high = arr.length - 1;
+
+  //     while (mid <= high) {
+  //       if (arr[mid] === 0) {
+  //         // Swap arr[low] and arr[mid]
+  //         [arr[low], arr[mid]] = [arr[mid], arr[low]];
+  //         low++;
+  //         mid++;
+  //       } else if (arr[mid] === 1) {
+  //         mid++;
+  //       } else {
+  //         // arr[mid] === 2
+  //         // Swap arr[mid] and arr[high]
+  //         [arr[mid], arr[high]] = [arr[high], arr[mid]];
+  //         high--;
+  //       }
+  //     }
+
+  //     return arr;
+  //   }
+
+  //   // Example usage
+  //   const arr = [1, 0, 1, 2, 0, 2, 1, 0];
+  //   console.log(sortArray012(arr)); // Output: [0, 0, 0, 1, 1, 1, 2, 2]
+
+  // APPROACH-
+  // Create 3 variables low for zero,mid for 1, high for 2 then run a loop mid should be less than high
+  // if mid is equal to 0 then swap mid and low then increase low and mid, if mid equal to 1 then increase mid
+  // if mid is higher than high then swap mid and high and decrease high.
+  
+
+//   // EXAMPLE- 2
+//   function sortArray012(arr) {
+//   let count0 = 0, count1 = 0, count2 = 0;
+
+//   // Count the number of 0s, 1s, and 2s
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === 0) {
+//       count0++;
+//     } else if (arr[i] === 1) {
+//       count1++;
+//     } else {
+//       count2++;
+//     }
+//   }
+
+//   // Reconstruct the array
+//   for (let i = 0; i < arr.length; i++) {
+//     if (i < count0) {
+//       arr[i] = 0;
+//     } else if (i < count0 + count1) {
+//       arr[i] = 1;
+//     } else {
+//       arr[i] = 2;
+//     }
+//   }
+
+//   return arr;
+// }
+
+// // Example usage
+// const arr = [1, 0, 1, 2, 0, 2, 1, 0];
+// console.log(sortArray012(arr)); // Output: [0, 0, 0, 1, 1, 1, 2, 2]
+
+// APPROACH-
+// Make 3 count variables to count the number of 0, 1 & 2
+// Then run first loop if i is equal to 0 the increase the count of 0 and do same for 1 and 2
+// Then Run second loop for print all count values in arr in this if i is less than count0 then put arr[i] =0 and do same for 1 & 2.
+
+  // ==========================================================================================
+
+  // @5. Move all the negative elements to one side of the array.                 -(EASY)
+
+  // let arr= [-1,2,-3,4,-5,6,-7,8,-9,10];
+
+  // function sortIt(arr) {
+  //   if (arr.length === 0) {
+  //     throw new Error("Empty Hai Bro");
+  //   }
+
+  //   let left = 0;
+  //   let right = arr.length - 1;
+  //   debugger
+
+  //   while (left < right) {
+  //     // Find the first non-negative number from the left
+  //     while (arr[left] < 0 ) {
+  //       left++;
+  //     }
+
+  //     // Find the first non-negative number from the right
+  //     while (arr[right] > 0) {
+  //       right--;
+  //     }
+
+  //     // Swap if left is still less than right
+  //     if (left < right) {
+  //       let temp = arr[left];
+  //       arr[left] = arr[right];
+  //       arr[right] = temp;
+  //     }
+  //   }
+
+  //   return arr;
+  // }
+
+  // console.log(sortIt(arr));
+
+
+
+// EXAMPLE-2
+
+// let arr = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10];
+
+// function sortArray012(arr) {
+//     let start = 0;
+//     let end = arr.length - 1; // Adjusted to correct the index out-of-bounds issue
+
+//     while (start < end) {
+//         if (arr[start] < 0) {
+//             start++; // Move start pointer if the element is negative
+//         } else if (arr[end] >= 0) {
+//             end--; // Move end pointer if the element is non-negative
+//         } else {
+//             // Swap arr[start] (negative) with arr[end] (non-negative)
+//             let temp = arr[start];
+//             arr[start] = arr[end];
+//             arr[end] = temp;
+//             start++;
+//             end--;
+//         }
+//     }
+
+//     return arr; // Return the modified array
+// }
+
+// console.log(sortArray012(arr));
+
+// APPROACH-
+// 2 variables start and end run while loop inside condition if start is less then 0 then increase start vice versa with end. 
+// then in else swap start and end 
+
+// ==========================================================================================
+
+  // @8. Find Largest sum contiguous Subarray [V. IMP]-                         -(MEDIUM)
+  // LINK-
+  // https://www.youtube.com/watch?v=VHAvCMgjAAs
+
+  // let arr=[-1,2,-3,4,-5, 6, -7, 8, -9, 10];
+  // function minMax(arr){
+  //   let max = 0;
+  //   let currentSum =0;
+  //   for(let i = 0; i<arr.length; i++){
+  //     currentSum = currentSum+ 1;
+  //     if(currentSum> max){
+  //       max= currentSum;
+  //     }
+  //     if(currentSum<0){     // if my sum is negative
+  //       currentSum= 0;
+  //     }
+  //   }
+
+  //   return max;
+  // }
+
+  // // minMax(arr);
+
+  // console.log(minMax(arr)); // Output the result
+
+   ////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 88. Merge Sorted Array                                                             -(EASY)
+      // You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing
+      // the number of elements in nums1 and nums2 respectively.
+      // Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+
+      // Example 1:
+      // Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+      // Output: [1,2,2,3,5,6]
+      // Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+      // The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+
+      // var merge = function (nums1, m, nums2, n) {
+      //   let i = m - 1; // pointer for nums1
+      //   let j = n - 1; // pointer for nums2
+      //   let k = m + n - 1; // pointer for the end of merged array
+
+      //   // Traverse the arrays from the end
+      //   while (i >= 0 && j >= 0) {
+      //     if (nums1[i] > nums2[j]) {
+      //       nums1[k] = nums1[i];
+      //       i--;
+      //     } else {
+      //       nums1[k] = nums2[j];
+      //       j--;
+      //     }
+      //     k--;
+      //   }
+
+      //   // If there are remaining elements in nums2, copy them
+      //   while (j >= 0) {
+      //     nums1[k] = nums2[j];
+      //     j--;
+      //     k--;
+      //   }
+      // };
+
+      // // Example usage
+      // let nums1 = [1, 2, 3, 0, 0, 0];
+      // let nums2 = [2, 5, 6];
+      // merge(nums1, 3, nums2, 3);
+      // console.log(nums1); // Output: [1, 2, 2, 3, 5, 6]
+
+      // nums1 = [1];
+      // nums2 = [];
+      // merge(nums1, 1, nums2, 0);
+      // console.log(nums1); // Output: [1]
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 121. Best Time to Buy and Sell Stock-                                          -(SLIDING WINDOW)
+      // You are given an array prices where prices[i] is the price of a given stock on the ith day.
+      // You want to maximize your profit by choosing a single day to buy one stock and choosing a
+      // different day in the future to sell that stock.
+      // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+      // Example 1:
+      // Input: prices = [7,1,5,3,6,4]
+      // Output: 5
+      // Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+      // Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+      //       var maxProfit = function (prices) {
+      //         if (prices.length === 0) return 0;
+      //         debugger;
+      //         // STEP- 1 Declare 2 variable
+      //         let minPrice = prices[0];
+      //         let maxProfit = 0;
+      //         // STEP-2 Run loop upto length of prices array
+      //         for (let i = 1; i < prices.length; i++) {
+      //           // STEP- 3 Check if the current price (which is price+1) is less than the minPrice then put in minPrice
+      //           if (prices[i] < minPrice) {
+      //             minPrice = prices[i];
+      //             //STEP- 4 If not greater than minPrice then substract minPrice with current Price and store in potentialProfit
+      //           } else {
+      //             let potentialProfit = prices[i] - minPrice;
+      //             // STEP- 5 Check again if potentialProfit is greater then maxProfit then store potentialProfit in maxProfit
+      //             if (potentialProfit > maxProfit) {
+      //               maxProfit = potentialProfit;
+      //             }
+      //           }
+      //         }
+
+      //         return maxProfit;
+      //       };
+
+      //       // Example usage
+      //       console.log(maxProfit([7, 1, 5, 3, 6, 4])); // Output: 5
+      //       console.log(maxProfit([7, 6, 4, 3, 1])); // Output: 0
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 31 Three way partitioning of an array around a given value             (Dutch National Flag algorithm & 3-Pointers)
+
+      // Function to partition the array into three parts
+      // function threeWayPartition(arr, lowVal, highVal) {
+      //     let start = 0, end = arr.length - 1;
+      //     let i = 0;
+
+      //     while (i <= end) {
+      //         if (arr[i] < lowVal) {
+      //             // Move elements less than lowVal to the front
+      //             let temp = arr[i];
+      //             arr[i] = arr[start];
+      //             arr[start] = temp;
+      //             start++;
+      //             i++;
+      //         } else if (arr[i] > highVal) {
+      //             // Move elements greater than highVal to the end
+      //             let temp = arr[i];
+      //             arr[i] = arr[end];
+      //             arr[end] = temp;
+      //             end--;
+      //         } else {
+      //             // Elements in the range [lowVal, highVal] remain in place
+      //             i++;
+      //         }
+      //     }
+      // }
+
+      // // Driver code
+      // let arr = [1, 14, 5, 20, 4, 2, 54, 20, 87, 98, 3, 1, 32];
+      // let lowVal = 14;
+      // let highVal = 20;
+
+      // threeWayPartition(arr, lowVal, highVal);
+      // console.log("Partitioned array:", arr);
+
+      // // Additional test case
+      // arr = [1, 14, 5, 20, 4, 2, 54, 20, 87, 98, 3, 1, 32];
+      // lowVal = 20;
+      // highVal = 20;
+
+      // threeWayPartition(arr, lowVal, highVal);
+      // console.log("Partitioned array:", arr);
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+      // Find common elements In 3 sorted arrays.                                      -(EASY)   (2-POINTERS)
+
+      // const arr1 = [1, 5, 10, 20, 40, 80];
+      // const arr2 = [6, 7, 20, 80, 100];
+      // const arr3 = [3, 4, 15, 20, 30, 70, 80, 120];
+
+      // function findCommonElements(arr1, arr2, arr3) {
+      //   //STEP- 1 Create 3 varibles as a 3-pointers and all starts from 0 index and Create one empty array to store duplicate element.
+      //     let i = 0, j = 0, k = 0;
+      //     let commonElements = [];
+
+      //     // STEP- 2 Run while loop all 3 pointers run upto less than arr.length
+      //     while (i < arr1.length && j < arr2.length && k < arr3.length) {
+
+      //     //STEP -3 If Condition- If all three elements are equal, then push to empty arra and increease all 3 pointers.
+      //         if (arr1[i] === arr2[j] && arr2[j] === arr3[k]) {
+      //             commonElements.push(arr1[i]);
+      //             i++;
+      //             j++;
+      //             k++;
+      //         }
+
+      //     // STEP- 4 Increase each pointers on conditions if 1st array elem is smaller that 2nd elm then increase i and do same for 2 and 3rd.
+      //         // Move pointer for arr1 forward
+      //         else if (arr1[i] < arr2[j]) {
+      //             i++;
+      //         }
+      //         // Move pointer for arr2 forward
+      //         else if (arr2[j] < arr3[k]) {
+      //             j++;
+      //         }
+      //         // Move pointer for arr3 forward
+      //         else {
+      //             k++;
+      //         }
+      //     }
+
+      //     return commonElements;
+      // }
+
+      // const result = findCommonElements(arr1, arr2, arr3);
+      // console.log("Common elements:", result); // Output: [20, 80]
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 3. Longest Substring Without Repeating Characters               - (MEDIUM) (SLIDING WINDOW & POINTERS)
+
+      // Given a string s, find the length of the longest substring without repeating characters.
+
+      // Input: s = "abcabcbb"
+      // Output: 3
+      // Explanation: The answer is "abc", with the length of 3.
+
+      // Example 2:
+
+      // Input: s = "bbbbb"
+      // Output: 1
+      // Explanation: The answer is "b", with the length of 1.
+      // Example 3:
+
+      // function lengthOfLongestSubstring(str) {
+      //   // STEP- 1 Use Set because it store only unique value and create 2 variables left and maxSixe to store length.
+      //   let set = new Set();
+      //   let left = 0;
+      //   let maxSize = 0;
+      //   debugger
+      //   // STEP- 2 Run loop upto length of str array
+      //   for (let right = 0; right < str.length; right++) {
+      //   // STEP-3 Check in set if repeated character is already present or not if present then delete and increase left
+      //     while (set.has(str[right])) {
+      //       set.delete(str[left]);
+      //       left++;
+      //     }
+      //    // STEP- 4 If not present then in set then add and count length by below formula
+      //     set.add(str[right]);
+      //     maxSize = Math.max(maxSize, right - left + 1);      // This formula always give window size.
+      //   }
+      //   return maxSize;
+      // };
+
+      // // Test examples
+
+      // console.log(lengthOfLongestSubstring("abcabcbb")); // Output: 3
+      // console.log(lengthOfLongestSubstring("bbbbb")); // Output: 1
+      // console.log(lengthOfLongestSubstring("pwwkew")); // Output: 3
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 1004. Max Consecutive Ones III                                                 -(MEDIUM)
+      // https://www.youtube.com/watch?v=Gl-8HLvV8bc
+      // Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+
+      // Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+      // Output: 6
+      // Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+      // Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+
+      // var longestOnes = function (nums, k) {
+      //   // STEP- 1 Make 2 pointers and make 2 variables 1 for get count of maxCount (window size) and zeroCount
+      //   let left = 0;
+      //   let right = 0;
+      //   let maxLength = 0;
+      //   let zeroCount = 0;
+
+      //   // STEP- 2 Run loop upto length
+      //   while (right < nums.length) {
+      //     // STEP- 3 If nums[right] is 0 then increase zeroCount
+      //     if (nums[right] === 0) {
+      //       zeroCount++;
+      //     }
+      //     // STEP-4 If zeroCount is more than 2(k) then increase left until zeroCount is less than (2)k and decrease zeroCount
+      //     while (zeroCount > k) {
+      //       if (nums[left] === 0) {
+      //         zeroCount--;
+      //       }
+      //       left++;
+      //     }
+      //     // STEP- 5 Get window size and increase right.
+      //     maxLength = Math.max(maxLength, right - left + 1);
+      //     right++;
+      //   }
+
+      //   return maxLength;
+      // };
+
+      // // Test examples
+      // console.log(longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2)); // Output: 6
+      // console.log(longestOnes([0, 0, 1, 1, 1, 0, 0], 0)); // Output: 3
+      // console.log(longestOnes([1, 1, 1, 1], 0)); // Output: 4
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 904. Fruit Into Baskets                                           - (MEDIUM) (HASHMAP & SLIDING WINDOW)
+      // Given an array [1,2,3,2] it this each element is unique fruit like 1-apple, 2-banana, 3-cherry, 2-banana
+      // Now we have to count maximum window count and in this only 2 unique fruits should be present and not more than that.
+      // Example- [1,2,3] -Wrong   [2,3,2]- Right
+
+      // function totalFruit (fruits) {
+      //   // STEP- 1 Make 2 pointers and make 2 variables 1 for get count of maxCount (window size) and zeroCount
+      //   let left = 0;
+      //   let right = 0;
+      //   let maxFruits = 0;
+      //   let fruitCount = new Map();
+      //   debugger
+      //   // STEP- 2 Run loop upto length
+      //   while (right < fruits.length) {
+      //     // Add the current fruit to the map or update its count
+      //     // STEP- 3 Set the elem in the map and give them a value 1
+      //     fruitCount.set(
+      //       fruits[right],
+      //       // This line means get fruit if not already present then show 0 instead of undefined and if already present then show 1
+      //       (fruitCount.get(fruits[right]) || 0) + 1
+      //     );
+
+      //     // STEP- 4 If there are more than 2 types of fruits, shrink the window from the left by increasing left++
+      //     while (fruitCount.size > 2) {
+      //       fruitCount.set(fruits[left], fruitCount.get(fruits[left]) - 1);
+      //       if (fruitCount.get(fruits[left]) === 0) {
+      //         fruitCount.delete(fruits[left]);
+      //       }
+      //       left++;
+      //     }
+
+      //     // STEP-5 Get window size maximum number of fruits collected
+      //     maxFruits = Math.max(maxFruits, right - left + 1);
+      //     right++;
+      //   }
+
+      //   return maxFruits;
+      // };
+
+      // // Test examples
+      // console.log(totalFruit([1, 2, 1])); // Output: 3
+      // console.log(totalFruit([0, 1, 2, 2])); // Output: 3
+      // console.log(totalFruit([1, 2, 3, 2, 2])); // Output: 4
+      // console.log(totalFruit([3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4])); // Output: 5
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // 1358. Number of Substrings Containing All Three Characters                       -(MEDIUM)
+      // Given a string s consisting only of characters a, b and c.
+      // Return the number of substrings containing at least one occurrence of all these characters a, b and c.
+
+      // Example 1:
+      // Input: s = "abcabc"
+      // Output: 10
+      // Explanation: The substrings containing at least one occurrence of the characters a, b and c are "abc", "abca", "abcab", "abcabc", "bca", "bcab", "bcabc", "cab", "cabc" and "abc" (again).
+
+      // Example 2:
+      // Input: s = "aaacb"
+      // Output: 3
+      // Explanation: The substrings containing at least one occurrence of the characters a, b and c are "aaacb", "aacb" and "acb".
+
+      // function numberOfSubstrings(s) {
+      //   // STEP- 1 Create a count variable to get count and 2 pointers
+      //   let count = { a: 0, b: 0, c: 0 };
+      //   let left = 0;
+      //   let result = 0;
+      //   // STEP- 2 Right will be faster pointer and left will be slow
+      //   for (let right = 0; right < s.length; right++) {
+      //     // STEP- 3 Increase count of s[right] in count
+      //     count[s[right]]++;
+      //     // STEP-4 Every a b c should be greater then 0
+      //     while (count["a"] > 0 && count["b"] > 0 && count["c"] > 0) {
+      //       // STEP- 5 Substract s.length- right and store in result
+      //       result += s.length - right;
+      //       // STEP- 6 Now decrease left which is a,b,c and increase move left which is slow pointer.
+      //       count[s[left]]--;
+      //       left++;
+      //     }
+      //   }
+
+      //   return result;
+      // }
+
+      // // Test examples
+      // console.log(numberOfSubstrings("abcabc")); // Output: 10
+      // console.log(numberOfSubstrings("aaacb")); // Output: 3
+      // console.log(numberOfSubstrings("abc")); // Output: 1
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // SLIDING WINDOW TECHNIQUE-
+
+      // function binarySubArray(nums, goal){
+      //   let left=0, right=0;
+      //   let sum=0;
+      //   let count=0;
+
+      //   while(right<nums.length){
+      //     sum+=nums[right];
+      //     while(sum>goal){
+      //       sum = sum-nums[left];
+      //       left++;
+      //     }
+      //     count= Math.max(count, right - left + 1);
+      //     // if(sum===goal){
+      //     //   count++;
+      //     // }
+      //     right++;
+      //   }
+      //   return count;
+      // }
+      // let nums = [1,0,0,1,1,0,], goal = 2;
+      // console.log(binarySubArray(nums, goal));
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////
+      // 930. Binary Subarrays With Sum                                         -(MEDIUM)
+      // Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+      // A subarray is a contiguous part of the array.
+
+      // Example 1:
+      // Input: nums = [1,0,1,0,1], goal = 2
+      // Output: 4
+      // Explanation: The 4 subarrays are bolded and underlined below:
+      // [1,0,1,0,1]
+      // [1,0,1,0,1]
+      // [1,0,1,0,1]
+      // [1,0,1,0,1]
+      // Example 2:
+
+      // Input: nums = [0,0,0,0,0], goal = 0
+      // Output: 15
+
+      
+      // function binarySubArray(nums, goal) {
+      //   let count = 0;
+      //   let prefixSum = 0;
+      //   let prefixSumCount = { 0: 1 }; // Initialize with 0 sum having one count
+      //   debugger
+      //   for (let r = 0; r < nums.length; r++) {
+      //     prefixSum += nums[r];
+
+      //     // Check if there is a subarray (prefixSum - goal) in the prefixSumCount
+      //     if (prefixSumCount[prefixSum - goal] !== undefined) {
+      //       count += prefixSumCount[prefixSum - goal];
+      //     }
+
+      //     // Update the prefixSumCount map
+      //     if (prefixSumCount[prefixSum] !== undefined) {
+      //       prefixSumCount[prefixSum]++;
+      //     } else {
+      //       prefixSumCount[prefixSum] = 1;
+      //     }
+      //   }
+
+      //   return count;
+      // }
+
+      // // Test examples
+      // console.log(binarySubArray([1, 0, 1, 0, 1], 2)); // Output: 4
+      // console.log(binarySubArray([0, 0, 0, 0, 0], 0)); // Output: 15     
+</script>
